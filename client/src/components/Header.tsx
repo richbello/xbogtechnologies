@@ -18,16 +18,7 @@ export default function Header() {
           </div>
         </div>
 
-        {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center gap-8">
-          <a href="/servicios" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
-            Servicios
-          </a>
 
-          <a href="#contacto" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
-            Contacto
-          </a>
-        </nav>
 
         {/* Desktop CTA */}
         <div className="hidden md:flex gap-3">
@@ -59,13 +50,6 @@ export default function Header() {
       {isMenuOpen && (
         <div className="md:hidden border-t border-border bg-background">
           <nav className="container mx-auto px-4 py-4 flex flex-col gap-4">
-            <a href="/servicios" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
-              Servicios
-            </a>
-
-            <a href="#contacto" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
-              Contacto
-            </a>
             <div className="flex gap-2 pt-2">
               <Button
                 variant="outline"
