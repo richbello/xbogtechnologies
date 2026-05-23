@@ -7,36 +7,36 @@ import {
 
 const faqs = [
   {
-    question: "¿Cuánto cuesta una consulta?",
-    answer: "La consulta inicial es completamente GRATIS. Realizamos un diagnóstico técnico sin costo. Solo pagas si decidimos trabajar juntos en tu caso, y el costo depende de la complejidad del reclamo.",
+    question: "¿Cuánto cuesta la automatización presupuestal?",
+    answer: "El costo depende de la complejidad de tus procesos. Ofrecemos un diagnóstico GRATIS de 2 horas para evaluar tu situación. Los proyectos típicos oscilan entre $20,000 y $100,000 USD. Trabajamos con presupuestos flexibles y planes de pago.",
   },
   {
-    question: "¿Cuánto tiempo tarda resolver un reclamo?",
-    answer: "La mayoría de nuestros casos se resuelven en 15-30 días. Algunos casos complejos pueden tomar hasta 60 días. El tiempo depende de la entidad y la complejidad del reclamo, pero siempre priorizamos la velocidad sin sacrificar calidad.",
+    question: "¿Cuánto tiempo tarda implementar la automatización?",
+    answer: "La mayoría de proyectos se implementan en 4-12 semanas, dependiendo de la complejidad. Comenzamos con un diagnóstico, luego diseño, implementación y capacitación. Te mantenemos informado en cada fase.",
   },
   {
-    question: "¿Qué pasa si no ganamos el reclamo?",
-    answer: "Garantizamos resultados. Si no obtenemos una resolución favorable, no pagas. Tu tranquilidad financiera es nuestra garantía de servicio profesional. Trabajamos bajo un modelo de éxito compartido.",
+    question: "¿Es compatible con BOGDATA?",
+    answer: "Sí, 100% compatible. Nuestras soluciones están diseñadas específicamente para integrar con BOGDATA. Recibimos datos de Excel, los procesamos, validamos y cargamos automáticamente en BOGDATA.",
   },
   {
-    question: "¿Puedo contactarlos fuera de horario?",
-    answer: "Sí. Ofrecemos atención 24/7 por WhatsApp. Para consultas urgentes, puedes escribir en cualquier momento y responderemos en las primeras horas. Llamadas telefónicas de 8 AM a 8 PM.",
+    question: "¿Qué entidades públicas pueden usar este servicio?",
+    answer: "Cualquier entidad pública que maneje presupuestos: Alcaldías, Gobernaciones, Secretarías de Hacienda, IDRD, DAMA, DANE, Ministerios. Si tienes procesos presupuestales manuales, podemos automatizarlos.",
   },
   {
-    question: "¿Necesito un abogado para presentar un reclamo?",
-    answer: "No necesariamente, pero es recomendable. Muchos reclamos pueden presentarse directamente, pero tener asesoría técnica aumenta significativamente las probabilidades de éxito. Nosotros nos encargamos de toda la gestión.",
+    question: "¿Necesito conocimientos técnicos?",
+    answer: "No. Nos encargamos de todo el aspecto técnico. Tu equipo solo necesita usar la plataforma. Proporcionamos capacitación completa y documentación detallada. Soporte 24/7 disponible.",
   },
   {
-    question: "¿Qué tipos de reclamos manejan?",
-    answer: "Manejamos reclamos contra EPS, servicios públicos, entidades administrativas, derechos del consumidor, tutelas y acciones de amparo. Si tu caso no está en esta lista, contáctanos igual. Evaluamos cada situación de forma individual.",
+    question: "¿Qué pasa con mis datos?",
+    answer: "Cumplimos con estándares de seguridad informática de nivel empresarial. Encriptación de datos, auditoría completa, cumplimiento normativo. Tus datos son confidenciales y seguros.",
   },
   {
-    question: "¿Cómo protegen mis datos personales?",
-    answer: "Cumplimos con la Ley 1581 de 2012 (Protección de Datos Personales en Colombia). Tus datos son confidenciales, cifrados y solo se usan para gestionar tu caso. Nunca compartimos información sin consentimiento.",
+    question: "¿Puedo escalar la solución después?",
+    answer: "Sí. Las soluciones están diseñadas para crecer con tu entidad. Puedes agregar más procesos, usuarios o funcionalidades en cualquier momento. Soporte continuo incluido.",
   },
   {
-    question: "¿Puedo hacer seguimiento a mi caso?",
-    answer: "Sí. Recibirás actualizaciones regulares por WhatsApp o correo. Tienes acceso a un portal donde puedes ver el estado de tu reclamo en tiempo real. Transparencia total es nuestro compromiso.",
+    question: "¿Cómo es el proceso de contratación?",
+    answer: "1) Consulta gratuita inicial, 2) Diagnóstico técnico, 3) Propuesta personalizada, 4) Firma de contrato, 5) Implementación. Todo transparente y documentado.",
   },
 ];
 
@@ -50,7 +50,7 @@ export default function FAQ() {
             Preguntas Frecuentes
           </h2>
           <p className="text-lg text-muted-foreground">
-            Resolvemos tus dudas. Si tienes otra pregunta, contáctanos directamente.
+            Resolvemos tus dudas sobre automatización presupuestal. ¿Otra pregunta? Contáctanos directamente.
           </p>
         </div>
 

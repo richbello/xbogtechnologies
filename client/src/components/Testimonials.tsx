@@ -3,45 +3,45 @@ import { Star } from "lucide-react";
 
 const testimonials = [
   {
-    name: "Carlos Mendoza",
-    location: "Bogotá D.C.",
-    role: "Empresario",
-    text: "Llevaba 3 años lidiando con cobros injustificados de mi EPS. En menos de 48 horas, Gestión & Reclamos identificó 5 errores procedimentales que el sistema intentaba ocultar. Hoy recuperé $8.5 millones.",
+    name: "Jefe de Presupuesto",
+    location: "Alcaldía Bogotá",
+    role: "Sector Público",
+    text: "Reducimos el tiempo de consolidación presupuestal de 5 días a 2 horas. Los reportes que antes tomaban una semana ahora se generan automáticamente cada mañana. Impresionante.",
     rating: 5,
   },
   {
-    name: "Patricia Restrepo",
-    location: "Soacha",
-    role: "Docente",
-    text: "Su intervención ante la empresa de servicios públicos fue contundente. Entienden perfectamente los tiempos y normativas del Estado. Pagué $2.3 millones de más, ahora tengo el reembolso aprobado.",
+    name: "Tesorero",
+    location: "Gobernación",
+    role: "Sector Público",
+    text: "La integración con BOGDATA fue perfecta. Eliminamos errores manuales completamente. Ahora tenemos 100% precisión en nuestros datos presupuestales. Recomendado para cualquier entidad.",
     rating: 5,
   },
   {
-    name: "Héctor Fabio J.",
-    location: "Medellín",
-    role: "Independiente",
-    text: "El análisis multidisciplinario sobre mi caso de servicios públicos evitó un cobro desproporcionado de $15 millones. No son solo trámites, es una defensa real de los derechos del ciudadano.",
+    name: "Director de Sistemas",
+    location: "Secretaría de Hacienda",
+    role: "Sector Público",
+    text: "El equipo entiende perfectamente cómo funcionan los sistemas públicos. No solo automatizaron procesos, también optimizaron nuestra estructura de datos. Profesionales de verdad.",
     rating: 5,
   },
   {
-    name: "Lucía Fernanda G.",
-    location: "Cali",
-    role: "Pensionada",
-    text: "Recuperamos la tranquilidad gracias a su gestión técnica. El equipo fue respetuoso, profesional y efectivo. Recomendados 100% para cualquier reclamo administrativo.",
+    name: "Coordinador Presupuestal",
+    location: "Alcaldía Local",
+    role: "Sector Público",
+    text: "Ahorramos 200 horas de trabajo manual al mes. Mi equipo ahora se enfoca en análisis estratégico en lugar de tareas repetitivas. El ROI se vio en el primer mes.",
     rating: 5,
   },
   {
-    name: "Ricardo Silva",
-    location: "Barranquilla",
-    role: "Comerciante",
-    text: "Impresionado con la rapidez en el diagnóstico. En menos de 48 horas ya teníamos una ruta clara de acción ante la entidad pública. Resultados en 21 días.",
+    name: "Jefe de Finanzas",
+    location: "Entidad Distrital",
+    role: "Sector Público",
+    text: "La capacitación fue excelente. Mi equipo dominó la plataforma en una semana. El soporte técnico es responsivo y profesional. Totalmente recomendados.",
     rating: 5,
   },
   {
-    name: "Elena M. Duarte",
-    location: "Bucaramanga",
-    role: "Abogada",
-    text: "La seriedad y el profesionalismo que proyectan se ve reflejado en la efectividad de sus reclamaciones. Incluso como profesional del derecho, reconozco su expertise. Totalmente recomendados.",
+    name: "Responsable de Reportería",
+    location: "Municipio",
+    role: "Sector Público",
+    text: "Pasamos de reportes manuales en Excel a dashboards interactivos en tiempo real. Los directivos ahora tienen información actualizada al instante. Transformación digital real.",
     rating: 5,
   },
 ];
@@ -63,10 +63,10 @@ export default function Testimonials() {
         {/* Section Header */}
         <div className="max-w-2xl mx-auto text-center mb-16">
           <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-4">
-            Historias de Éxito
+            Lo Que Dicen Nuestros Clientes
           </h2>
           <p className="text-lg text-muted-foreground">
-            Más de 1,000 clientes satisfechos que recuperaron su tranquilidad financiera.
+            Entidades públicas que transformaron su gestión presupuestal con XBOG Technologies.
           </p>
         </div>
 
