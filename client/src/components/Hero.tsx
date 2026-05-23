@@ -40,7 +40,7 @@ export default function Hero() {
             {/* Main Headline */}
             <div>
               <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white mb-4 leading-tight">
-                Automatiza tu gestión presupuestal
+                Automatiza tu Gestión Presupuestal
               </h1>
               <p className="text-xl text-blue-100 leading-relaxed">
                 Transforma flujos manuales en procesos inteligentes, integrados y confiables. 

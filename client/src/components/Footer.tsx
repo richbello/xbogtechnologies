@@ -17,8 +17,10 @@ export default function Footer() {
             </div>
             </div>
             <p className="text-sm text-slate-300 leading-relaxed">
-              Especialista en automatización de procesos presupuestales para el sector público. 
-              Transformación digital con precisión, seguridad y eficiencia.
+              <strong>Richard Bello Roncancio</strong><br/>
+              Economista | Tecnólogo en Análisis de Desarrollo de Software | Maestría en Seguridad Informática<br/>
+              <br/>
+              Especialista en Automatización de Procesos Presupuestales para el Sector Público. Transformación digital con precisión, seguridad y eficiencia.
             </p>
           </div>
 
