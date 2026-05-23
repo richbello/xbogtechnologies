@@ -26,10 +26,10 @@ export default function Footer() {
           <div>
             <h4 className="font-bold text-white mb-4">Servicios</h4>
             <ul className="space-y-2 text-sm text-slate-300">
-              <li><a href="#servicios" className="hover:text-green-400 transition-colors">Automatización Presupuestal</a></li>
-              <li><a href="#servicios" className="hover:text-green-400 transition-colors">Integración BOGDATA</a></li>
-              <li><a href="#servicios" className="hover:text-green-400 transition-colors">Análisis de Datos</a></li>
-              <li><a href="#servicios" className="hover:text-green-400 transition-colors">Seguridad Informática</a></li>
+              <li><a href="/servicios" className="hover:text-green-400 transition-colors">Automatización Presupuestal</a></li>
+              <li><a href="/servicios" className="hover:text-green-400 transition-colors">Integración BOGDATA</a></li>
+              <li><a href="/servicios" className="hover:text-green-400 transition-colors">Análisis de Datos</a></li>
+              <li><a href="/servicios" className="hover:text-green-400 transition-colors">Seguridad Informática</a></li>
             </ul>
           </div>
 

@@ -26,11 +26,8 @@ export default function Header() {
           <a href="#proceso" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
             Cómo Funciona
           </a>
-          <a href="#testimonios" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
-            Testimonios
-          </a>
-          <a href="#faq" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
-            Preguntas
+          <a href="#contacto" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
+            Contacto
           </a>
         </nav>
 
@@ -70,11 +67,8 @@ export default function Header() {
             <a href="#proceso" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
               Cómo Funciona
             </a>
-            <a href="#testimonios" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
-              Testimonios
-            </a>
-            <a href="#faq" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
-              Preguntas
+            <a href="#contacto" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
+              Contacto
             </a>
             <div className="flex gap-2 pt-2">
               <Button
