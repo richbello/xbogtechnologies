@@ -23,9 +23,7 @@ export default function Header() {
           <a href="/servicios" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
             Servicios
           </a>
-          <a href="#proceso" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
-            Cómo Funciona
-          </a>
+
           <a href="#contacto" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
             Contacto
           </a>
@@ -64,9 +62,7 @@ export default function Header() {
             <a href="/servicios" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
               Servicios
             </a>
-            <a href="#proceso" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
-              Cómo Funciona
-            </a>
+
             <a href="#contacto" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
               Contacto
             </a>
