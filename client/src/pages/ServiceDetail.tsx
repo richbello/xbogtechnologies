@@ -13,7 +13,7 @@ import NotFound from "./NotFound";
 
 export default function ServiceDetail() {
   const params = useParams();
-  const service = getServiceBySlug(params.slug);
+  const service = getServiceBySlug(params.slug || "");
 
   if (!service) {
     return <NotFound />;
