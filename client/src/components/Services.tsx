@@ -1,49 +1,55 @@
-import { Card } from "@/components/ui/card";
 import { motion } from "framer-motion";
-import { Zap, Database, BarChart3, Lock, Workflow, TrendingUp } from "lucide-react";
+import { ArrowRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const services = [
   {
-    icon: Workflow,
+    id: "automatizacion",
     title: "Automatización de Procesos Presupuestales",
     description: "Transforma flujos manuales en Excel en procesos automáticos, validados e integrados con BOGDATA.",
-    color: "from-blue-500 to-blue-600",
+    image: "https://d2xsxph8kpxj0f.cloudfront.net/310519663643983897/d2KGVPuzCvKWGrfa46ic99/service-automatizacion-presupuestal-5go79q4Y5rcxwSbXPF2gf9.webp",
     features: ["Consolidación automática", "Validación de datos", "Integración BOGDATA"],
+    color: "from-blue-500 to-blue-600",
   },
   {
-    icon: Database,
+    id: "integracion",
     title: "Integración de Datos Presupuestales",
     description: "Unifica datos de múltiples fuentes y departamentos en una plataforma centralizada y confiable.",
-    color: "from-green-500 to-green-600",
+    image: "https://d2xsxph8kpxj0f.cloudfront.net/310519663643983897/d2KGVPuzCvKWGrfa46ic99/service-integracion-bogdata-W6xabnYEcRgHuxCoXYFKMq.webp",
     features: ["Múltiples fuentes", "Centralización", "Sincronización en tiempo real"],
+    color: "from-green-500 to-green-600",
   },
   {
-    icon: BarChart3,
+    id: "reporteria",
     title: "Reportería y Dashboards",
     description: "Crea reportes automáticos y dashboards interactivos para mejor toma de decisiones.",
-    color: "from-purple-500 to-purple-600",
+    image: "https://d2xsxph8kpxj0f.cloudfront.net/310519663643983897/d2KGVPuzCvKWGrfa46ic99/service-reporteria-financiera-4PiG8rsHebRP3YHtfDqUKf.webp",
     features: ["Reportes automáticos", "Dashboards interactivos", "Análisis en tiempo real"],
+    color: "from-purple-500 to-purple-600",
   },
   {
-    icon: Lock,
-    title: "Seguridad e Integridad de Datos",
-    description: "Protege tu información presupuestal con estándares de seguridad informática avanzados.",
+    id: "validacion",
+    title: "Validación y Calidad de Datos",
+    description: "Protege la integridad de tu información presupuestal con validaciones rigurosas y detección de errores.",
+    image: "https://d2xsxph8kpxj0f.cloudfront.net/310519663643983897/d2KGVPuzCvKWGrfa46ic99/service-validacion-datos-NBULW76s72XFLeesHvmsiR.webp",
+    features: ["Validación automática", "Detección de errores", "Auditoría de datos"],
     color: "from-red-500 to-red-600",
-    features: ["Encriptación", "Auditoría completa", "Cumplimiento normativo"],
   },
   {
-    icon: TrendingUp,
-    title: "Análisis y Optimización",
-    description: "Identifica oportunidades de mejora y optimización en tus procesos presupuestales.",
-    color: "from-orange-500 to-orange-600",
-    features: ["Análisis predictivo", "Optimización", "Recomendaciones"],
-  },
-  {
-    icon: Zap,
-    title: "Consultoría y Capacitación",
-    description: "Acompañamiento completo en la transformación digital de tu entidad.",
+    id: "capacitacion",
+    title: "Capacitación y Soporte",
+    description: "Acompañamiento completo para que tu equipo domine la nueva plataforma y procesos.",
+    image: "https://d2xsxph8kpxj0f.cloudfront.net/310519663643983897/d2KGVPuzCvKWGrfa46ic99/service-capacitacion-soporte-6kPAfaSpyfD3VWYBkCHidi.webp",
+    features: ["Capacitación personalizada", "Soporte 24/7", "Documentación completa"],
     color: "from-yellow-500 to-yellow-600",
-    features: ["Diagnóstico", "Implementación", "Capacitación del equipo"],
+  },
+  {
+    id: "consultoria",
+    title: "Consultoría Estratégica",
+    description: "Diagnóstico y estrategia personalizada para optimizar tu gestión presupuestal.",
+    image: "https://d2xsxph8kpxj0f.cloudfront.net/310519663643983897/d2KGVPuzCvKWGrfa46ic99/service-consultoria-estrategica-dBRQMqbK9TjoRLba7nH9eQ.webp",
+    features: ["Diagnóstico completo", "Plan de acción", "Seguimiento continuo"],
+    color: "from-indigo-500 to-indigo-600",
   },
 ];
 
@@ -69,7 +75,7 @@ export default function Services() {
   };
 
   return (
-    <section className="py-20 md:py-32 bg-gradient-to-b from-background via-background to-slate-50 dark:to-slate-950">
+    <section id="servicios" className="py-20 md:py-32 bg-background">
       <div className="container mx-auto px-4">
         {/* Section Header */}
         <motion.div
@@ -90,70 +96,84 @@ export default function Services() {
 
         {/* Services Grid */}
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
         >
-          {services.map((service, index) => {
-            const Icon = service.icon;
-            return (
-              <motion.div key={index} variants={cardVariants}>
-                <Card className="group relative overflow-hidden hover:shadow-lg transition-all duration-300 cursor-pointer border-border hover:border-blue-400 dark:hover:border-blue-600 h-full flex flex-col">
-                  {/* Background Gradient */}
-                  <div
-                    className={`absolute inset-0 bg-gradient-to-br ${service.color} opacity-0 group-hover:opacity-5 transition-opacity duration-300`}
-                  />
+          {services.map((service) => (
+            <motion.div
+              key={service.id}
+              variants={cardVariants}
+              className="group overflow-hidden rounded-xl border border-border bg-card hover:shadow-xl transition-all duration-300"
+            >
+              {/* Image Container */}
+              <div className="relative h-48 overflow-hidden bg-gradient-to-br from-slate-200 to-slate-300 dark:from-slate-800 dark:to-slate-900">
+                <img
+                  src={service.image}
+                  alt={service.title}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                />
+                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-300" />
+              </div>
 
-                  <div className="relative p-8 flex flex-col flex-1">
-                    {/* Icon */}
-                    <div
-                      className={`inline-flex p-3 rounded-lg bg-gradient-to-br ${service.color} mb-4 w-fit`}
-                    >
-                      <Icon size={24} className="text-white" />
-                    </div>
+              {/* Content */}
+              <div className="p-6">
+                {/* Title */}
+                <h3 className="text-xl font-bold text-foreground mb-2 line-clamp-2">
+                  {service.title}
+                </h3>
 
-                    {/* Content */}
-                    <h3 className="text-xl font-bold text-foreground mb-2">
-                      {service.title}
-                    </h3>
-                    <p className="text-muted-foreground leading-relaxed mb-4 flex-1">
-                      {service.description}
-                    </p>
+                {/* Description */}
+                <p className="text-sm text-muted-foreground mb-4 line-clamp-2">
+                  {service.description}
+                </p>
 
-                    {/* Features */}
-                    <div className="space-y-2 mb-4">
-                      {service.features.map((feature, idx) => (
-                        <div key={idx} className="flex items-center gap-2 text-sm text-muted-foreground">
-                          <div className="w-1.5 h-1.5 rounded-full bg-blue-500" />
-                          {feature}
-                        </div>
-                      ))}
-                    </div>
+                {/* Features */}
+                <ul className="space-y-2 mb-6">
+                  {service.features.map((feature, idx) => (
+                    <li key={idx} className="flex items-center gap-2 text-sm text-muted-foreground">
+                      <div className={`w-2 h-2 rounded-full bg-gradient-to-r ${service.color}`} />
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
 
-                    {/* Hover Effect */}
-                    <div className="mt-auto flex items-center gap-2 text-blue-600 dark:text-blue-400 font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <span>Más información</span>
-                      <svg
-                        className="w-4 h-4 group-hover:translate-x-1 transition-transform"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M9 5l7 7-7 7"
-                        />
-                      </svg>
-                    </div>
-                  </div>
-                </Card>
-              </motion.div>
-            );
-          })}
+                {/* CTA Button */}
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="w-full group/btn"
+                  onClick={() => window.location.href = `https://wa.me/573208303847?text=Hola, me interesa saber más sobre ${service.title}`}
+                >
+                  Más Información
+                  <ArrowRight size={16} className="ml-2 group-hover/btn:translate-x-1 transition-transform" />
+                </Button>
+              </div>
+            </motion.div>
+          ))}
+        </motion.div>
+
+        {/* CTA Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          viewport={{ once: true }}
+          className="mt-16 text-center"
+        >
+          <p className="text-muted-foreground mb-4">
+            ¿Necesitas una solución personalizada?
+          </p>
+          <Button
+            size="lg"
+            onClick={() => window.location.href = "https://wa.me/573208303847"}
+            className="gap-2"
+          >
+            Solicitar Demo Gratuita
+            <ArrowRight size={18} />
+          </Button>
         </motion.div>
       </div>
     </section>
