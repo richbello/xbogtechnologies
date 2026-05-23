@@ -1,108 +1,168 @@
-import { Card } from "@/components/ui/card";
-import { CheckCircle2, FileSearch, Zap, Target } from "lucide-react";
+import { motion } from "framer-motion";
+import { CheckCircle2, Zap, Target, Lightbulb } from "lucide-react";
 
 const steps = [
   {
     number: 1,
-    icon: FileSearch,
-    title: "Auditoría Técnica",
-    description: "Análisis profundo de tu caso. Identificamos errores procedimentales, vicios legales y argumentos de defensa. Diagnóstico en 48 horas.",
+    icon: Lightbulb,
+    title: "Diagnóstico y Análisis",
+    description: "Evaluamos tus procesos presupuestales actuales, identificamos ineficiencias y oportunidades de automatización.",
     details: [
-      "Revisión de documentos y comunicaciones",
-      "Análisis de normativas aplicables",
-      "Identificación de vulnerabilidades",
+      "Análisis de flujos actuales",
+      "Identificación de cuellos de botella",
+      "Mapeo de fuentes de datos",
     ],
   },
   {
     number: 2,
     icon: Zap,
-    title: "Estrategia de Acción",
-    description: "Diseñamos una hoja de ruta clara y contundente. Documentos técnicos con enfoque de cierre que fuerzan cumplimiento normativo.",
+    title: "Diseño de Solución",
+    description: "Creamos una solución personalizada que se adapta a tu estructura organizacional y sistemas existentes como BOGDATA.",
     details: [
-      "Redacción de escritos de alto impacto",
-      "Aplicación de jurisprudencia de cortes",
-      "Definición de plazos y responsables",
+      "Diseño de arquitectura de datos",
+      "Especificación de automatizaciones",
+      "Plan de integración con BOGDATA",
     ],
   },
   {
     number: 3,
     icon: Target,
-    title: "Ejecución y Seguimiento",
-    description: "Perseguimos tu caso hasta obtener respuesta favorable. Seguimiento automatizado de términos legales y defensa ante silencios.",
+    title: "Implementación y Pruebas",
+    description: "Desarrollamos e implementamos la solución con pruebas rigurosas para garantizar confiabilidad y precisión.",
     details: [
-      "Presentación de documentos ante entidades",
-      "Monitoreo de plazos de respuesta",
-      "Defensa activa ante incumplimientos",
+      "Desarrollo de scripts/automatizaciones",
+      "Validación de datos",
+      "Pruebas en ambiente controlado",
     ],
   },
   {
     number: 4,
     icon: CheckCircle2,
-    title: "Resolución Definitiva",
-    description: "Garantizamos que la entidad cumpla la decisión favorable. Tu tranquilidad financiera es nuestra garantía de éxito.",
+    title: "Capacitación y Soporte",
+    description: "Capacitamos a tu equipo y proporcionamos soporte continuo para garantizar el éxito a largo plazo.",
     details: [
-      "Verificación de cumplimiento",
-      "Acompañamiento hasta resolución final",
-      "Asesoría post-resolución",
+      "Capacitación del equipo",
+      "Documentación completa",
+      "Soporte técnico 24/7",
     ],
   },
 ];
 
 export default function Process() {
   return (
-    <section id="proceso" className="py-24 md:py-32">
+    <section className="py-20 md:py-32 bg-slate-50 dark:bg-slate-900">
       <div className="container mx-auto px-4">
         {/* Section Header */}
-        <div className="max-w-2xl mx-auto text-center mb-16">
-          <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-4">
-            Nuestro Proceso Probado
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="max-w-3xl mx-auto text-center mb-16"
+        >
+          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
+            Nuestro Proceso Comprobado
           </h2>
           <p className="text-lg text-muted-foreground">
-            Una ingeniería de resultados diseñada para desmantelar cobros abusivos 
-            y garantizar tu defensa jurídica.
+            Seguimos una metodología estructurada que garantiza resultados exitosos 
+            en la transformación de tus procesos presupuestales.
           </p>
-        </div>
+        </motion.div>
 
-        {/* Steps Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {/* Steps */}
+        <div className="max-w-5xl mx-auto">
           {steps.map((step, index) => {
             const Icon = step.icon;
+            const isEven = index % 2 === 0;
+
             return (
-              <div key={index} className="relative">
-                {/* Connection Line */}
-                {index < steps.length - 1 && (
-                  <div className="hidden md:block absolute -right-4 top-32 w-8 h-0.5 bg-gradient-to-r from-primary to-transparent" />
-                )}
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="mb-12 last:mb-0"
+              >
+                <div className={`grid grid-cols-1 md:grid-cols-2 gap-8 items-center`}>
+                  {/* Content */}
+                  <motion.div
+                    initial={{ opacity: 0, x: isEven ? -30 : 30 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.6, delay: index * 0.1 }}
+                    viewport={{ once: true }}
+                    className={isEven ? "md:order-1" : "md:order-2"}
+                  >
+                    <div className="flex items-start gap-4">
+                      {/* Step Number and Icon */}
+                      <div className="flex-shrink-0">
+                        <div className="flex items-center justify-center h-16 w-16 rounded-lg bg-gradient-to-br from-blue-500 to-blue-600 text-white">
+                          <Icon size={28} />
+                        </div>
+                      </div>
 
-                <Card className="relative overflow-hidden border-border hover:border-primary/50 transition-colors">
-                  {/* Number Badge */}
-                  <div className="absolute -top-4 -right-4 w-24 h-24 bg-gradient-to-br from-primary/20 to-accent/20 rounded-full" />
-                  <div className="absolute top-4 right-4 w-12 h-12 bg-primary rounded-full flex items-center justify-center text-primary-foreground font-bold text-lg">
-                    {step.number}
-                  </div>
+                      {/* Text Content */}
+                      <div className="flex-1">
+                        <p className="text-sm font-semibold text-blue-600 dark:text-blue-400 uppercase tracking-wide mb-1">
+                          Paso {step.number}
+                        </p>
+                        <h3 className="text-2xl font-bold text-foreground mb-2">
+                          {step.title}
+                        </h3>
+                        <p className="text-muted-foreground mb-4 leading-relaxed">
+                          {step.description}
+                        </p>
 
-                  <div className="relative p-8">
-                    {/* Icon */}
-                    <div className="inline-flex p-3 rounded-lg bg-primary/10 mb-4">
-                      <Icon size={24} className="text-primary" />
+                        {/* Details */}
+                        <ul className="space-y-2">
+                          {step.details.map((detail, idx) => (
+                            <li
+                              key={idx}
+                              className="flex items-center gap-2 text-sm text-muted-foreground"
+                            >
+                              <div className="w-2 h-2 rounded-full bg-blue-500" />
+                              {detail}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
                     </div>
+                  </motion.div>
 
-                    {/* Content */}
-                    <h3 className="text-2xl font-bold text-foreground mb-2">{step.title}</h3>
-                    <p className="text-muted-foreground mb-6 leading-relaxed">{step.description}</p>
+                  {/* Visual Element */}
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.6, delay: index * 0.1 + 0.2 }}
+                    viewport={{ once: true }}
+                    className={isEven ? "md:order-2" : "md:order-1"}
+                  >
+                    <div className="p-8 rounded-lg bg-gradient-to-br from-blue-50 to-green-50 dark:from-blue-950/30 dark:to-green-950/30 border border-blue-200 dark:border-blue-800">
+                      <div className="text-center">
+                        <div className="text-5xl font-bold text-blue-600 dark:text-blue-400 mb-2">
+                          {step.number}
+                        </div>
+                        <p className="text-sm text-muted-foreground">
+                          {step.title}
+                        </p>
+                      </div>
+                    </div>
+                  </motion.div>
+                </div>
 
-                    {/* Details */}
-                    <ul className="space-y-2">
-                      {step.details.map((detail, i) => (
-                        <li key={i} className="flex items-start gap-2 text-sm text-foreground">
-                          <CheckCircle2 size={16} className="text-accent mt-0.5 flex-shrink-0" />
-                          <span>{detail}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </Card>
-              </div>
+                {/* Connector Line */}
+                {index < steps.length - 1 && (
+                  <motion.div
+                    initial={{ scaleY: 0 }}
+                    whileInView={{ scaleY: 1 }}
+                    transition={{ duration: 0.6, delay: index * 0.1 + 0.4 }}
+                    viewport={{ once: true }}
+                    className="h-12 flex items-center justify-center mt-8 origin-top"
+                  >
+                    <div className="w-1 h-full bg-gradient-to-b from-blue-500 to-transparent" />
+                  </motion.div>
+                )}
+              </motion.div>
             );
           })}
         </div>
