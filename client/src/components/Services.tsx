@@ -53,6 +53,9 @@ export default function Services() {
             Cobertura integral en gestión de reclamos administrativos. Cada caso es único, 
             cada solución es personalizada.
           </p>
+          <a href="/servicios" className="inline-block mt-4 text-primary font-medium hover:underline">
+            Ver todos los servicios →
+          </a>
         </div>
 
         {/* Services Grid */}

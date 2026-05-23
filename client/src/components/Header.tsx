@@ -20,7 +20,7 @@ export default function Header() {
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-8">
-          <a href="#servicios" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
+          <a href="/servicios" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
             Servicios
           </a>
           <a href="#proceso" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
@@ -64,7 +64,7 @@ export default function Header() {
       {isMenuOpen && (
         <div className="md:hidden border-t border-border bg-background">
           <nav className="container mx-auto px-4 py-4 flex flex-col gap-4">
-            <a href="#servicios" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
+            <a href="/servicios" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
               Servicios
             </a>
             <a href="#proceso" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
