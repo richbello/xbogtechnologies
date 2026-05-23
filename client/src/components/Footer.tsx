@@ -8,13 +8,13 @@ export default function Footer() {
           {/* Brand */}
           <div>
             <div className="flex items-center gap-2 mb-4">
-              <div className="w-10 h-10 bg-gradient-to-br from-green-500 to-green-600 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-lg">PA</span>
-              </div>
-              <div>
-                <p className="font-bold text-white">Presupuestal 360</p>
-                <p className="text-xs text-green-300">Automatización Digital</p>
-              </div>
+            <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-green-600 rounded-lg flex items-center justify-center">
+              <span className="text-white font-bold text-lg">XB</span>
+            </div>
+            <div>
+              <p className="font-bold text-white">XBOG TECHNOLOGIES</p>
+              <p className="text-xs text-green-300">Automatización Digital</p>
+            </div>
             </div>
             <p className="text-sm text-slate-300 leading-relaxed">
               Especialista en automatización de procesos presupuestales para el sector público. 
@@ -84,7 +84,7 @@ export default function Footer() {
         {/* Bottom */}
         <div className="border-t border-slate-700 pt-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-slate-400">
-            <p>© 2026 Presupuestal 360. Todos los derechos reservados.</p>
+            <p>© 2026 XBOG TECHNOLOGIES. Todos los derechos reservados.</p>
             <div className="flex gap-6 md:justify-end">
               <a href="#" className="hover:text-green-400 transition-colors">Política de Privacidad</a>
               <a href="#" className="hover:text-green-400 transition-colors">Términos de Servicio</a>

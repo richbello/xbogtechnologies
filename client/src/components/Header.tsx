@@ -9,12 +9,12 @@ export default function Header() {
     <header className="sticky top-0 z-50 bg-background/95 backdrop-blur-md border-b border-border">
       <div className="container mx-auto px-4 py-4 flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <div className="w-10 h-10 bg-gradient-to-br from-primary to-primary/70 rounded-lg flex items-center justify-center">
-            <span className="text-primary-foreground font-bold text-lg">GR</span>
+          <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-green-600 rounded-lg flex items-center justify-center">
+            <span className="text-white font-bold text-lg">XB</span>
           </div>
           <div className="hidden sm:flex flex-col">
-            <h1 className="text-lg font-bold text-foreground">Gestión & Reclamos</h1>
-            <p className="text-xs text-muted-foreground">Colombia</p>
+            <h1 className="text-lg font-bold text-foreground">XBOG TECHNOLOGIES</h1>
+            <p className="text-xs text-muted-foreground">Automatización Digital</p>
           </div>
         </div>
 
