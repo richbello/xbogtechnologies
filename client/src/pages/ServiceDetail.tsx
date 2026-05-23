@@ -35,7 +35,7 @@ export default function ServiceDetail() {
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.5, type: "tween" },
+      transition: { duration: 0.5 },
     },
   };
 
@@ -67,7 +67,7 @@ export default function ServiceDetail() {
           className="absolute inset-0 flex items-end"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, type: "tween" }}
+          transition={{ duration: 0.6 }}
         >
           <div className="w-full px-4 sm:px-6 lg:px-8 pb-8">
             <div className="max-w-6xl mx-auto">
@@ -215,7 +215,7 @@ export default function ServiceDetail() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, type: "tween" }}
+            transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
             <h2 className="text-3xl font-bold text-white mb-4">

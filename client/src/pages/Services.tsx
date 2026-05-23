@@ -39,7 +39,7 @@ export default function Services() {
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, type: "tween" }}
+            transition={{ duration: 0.6 }}
           >
             <div className="inline-flex items-center gap-2 mb-4 px-4 py-2 rounded-full bg-blue-50 dark:bg-blue-950 border border-blue-200 dark:border-blue-800">
               <Sparkles className="w-4 h-4 text-blue-600 dark:text-blue-400" />
@@ -53,7 +53,7 @@ export default function Services() {
             className="text-4xl sm:text-5xl font-bold text-foreground mb-4 leading-tight"
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1, type: "tween" }}
+            transition={{ duration: 0.6, delay: 0.1 }}
           >
             Soluciones Integrales para tu Negocio
           </motion.h1>
@@ -62,7 +62,7 @@ export default function Services() {
             className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto"
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2, type: "tween" }}
+            transition={{ duration: 0.6, delay: 0.2 }}
           >
             Desde gestión legal hasta transformación digital, ofrecemos servicios
             especializados diseñados para proteger tus intereses y potenciar tu
