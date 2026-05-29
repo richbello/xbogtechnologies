@@ -7,6 +7,7 @@ import About from "@/components/About";
 import CTA from "@/components/CTA";
 import Footer from "@/components/Footer";
 
+// Trigger GitHub Actions
 export default function Home() {
   return (
     <div className="min-h-screen flex flex-col bg-background">
