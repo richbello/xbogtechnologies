@@ -12,6 +12,7 @@
   "format": "prettier --write .",
   "deploy": "vite build && gh-pages -d dist"
 }
+  }
 
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
