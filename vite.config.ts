@@ -134,7 +134,7 @@ function vitePluginStorageProxy(): Plugin {
 // Configuración de Vite Unificada con Base URL para GitHub Pages
 // Configuración de Vite Unificada
 export default defineConfig({
-  base: './', // <-- Asegúrate de que tenga el punto y la barra para rutas relativas
+  base:'/xbogtechnologies/', // <-- Asegúrate de que tenga el punto y la barra para rutas relativas
   plugins: [
     react(),
     tailwindcss(),
