@@ -131,7 +131,9 @@ function vitePluginStorageProxy(): Plugin {
   };
 }
 
+// Configuración de Vite Unificada con Base URL para GitHub Pages
 export default defineConfig({
+  base: '/xbogtechnologies/', // <-- Integrado correctamente aquí para producción
   plugins: [
     react(),
     tailwindcss(),
@@ -171,4 +173,3 @@ export default defineConfig({
     },
   },
 });
-
