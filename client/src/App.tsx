@@ -1,7 +1,8 @@
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/NotFound";
-import { Route, Switch } from "wouter";
+// 1. MODIFICADO: Agregamos "Router" a la importación de wouter
+import { Route, Switch, Router as WouterRouter } from "wouter"; 
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import Home from "./pages/Home";
@@ -9,7 +10,7 @@ import Services from "./pages/Services";
 import ServiceDetail from "./pages/ServiceDetail";
 
 
-function Router() {
+function NavigationRouter() { // Cambié el nombre para que no choque con el de la librería
   return (
     <Switch>
       <Route path={"/"} component={Home} />
@@ -30,15 +31,18 @@ function Router() {
 function App() {
   return (
     <ErrorBoundary>
-      <ThemeProvider
-        defaultTheme="light"
-        // switchable
-      >
-        <TooltipProvider>
-          <Toaster />
-          <Router />
-        </TooltipProvider>
-      </ThemeProvider>
+      {/* 2. MODIFICADO: Envolvemos todo en WouterRouter y le pasamos el "base" de tu GitHub Pages */}
+      <WouterRouter base="/xbogtechnologies">
+        <ThemeProvider
+          defaultTheme="light"
+          // switchable
+        >
+          <TooltipProvider>
+            <Toaster />
+            <NavigationRouter />
+          </TooltipProvider>
+        </ThemeProvider>
+      </WouterRouter>
     </ErrorBoundary>
   );
 }
