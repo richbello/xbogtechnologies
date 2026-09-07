@@ -132,6 +132,7 @@ function vitePluginStorageProxy(): Plugin {
 }
 
 export default defineConfig({
+  base: '/xbogtechnologies/', // <-- AGREGA ESTA LÍNEA EXACTAMENTE AQUÍ
   plugins: [
     react(),
     tailwindcss(),

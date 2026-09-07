@@ -1,21 +1,24 @@
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/NotFound";
-import { Route, Switch } from "wouter";
+import { Route, Switch, Router } from "wouter"; // <-- CORREGIDO: Añadido Router aquí
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import Home from "./pages/Home";
 import Services from "./pages/Services";
 import ServiceDetail from "./pages/ServiceDetail";
 
-
-function Router() {
+// Cambiamos el nombre a RouterComponent para que no choque con el Router de wouter
+function RouterComponent() {
   return (
     <Switch>
-      <Route path={"/"} component={Home} />
-      <Route path={"/servicios"} component={Services} />
-      <Route path={"/servicios/:slug"} component={ServiceDetail} />
-      <Route path={"/404"} component={NotFound} />
+      {/* Añadimos estas dos opciones para que no falle sin importar cómo lo llame el botón */}
+      <Route path="/" component={Home} />
+      <Route path="" component={Home} /> 
+      
+      <Route path="/servicios" component={Services} />
+      <Route path="/servicios/:slug" component={ServiceDetail} />
+      <Route path="/404" component={NotFound} />
       {/* Final fallback route */}
       <Route component={NotFound} />
     </Switch>
@@ -30,13 +33,13 @@ function Router() {
 function App() {
   return (
     <ErrorBoundary>
-      <ThemeProvider
-        defaultTheme="light"
-        // switchable
-      >
+      <ThemeProvider defaultTheme="light">
         <TooltipProvider>
-          <Toaster />
-          <Router />
+          <Router base="/xbogtechnologies">
+            <Toaster />
+            {/* Aquí adentro va el componente que renderiza las páginas */}
+            <RouterComponent /> 
+          </Router>
         </TooltipProvider>
       </ThemeProvider>
     </ErrorBoundary>
