@@ -1,336 +1,234 @@
-// ============================================================================
-// XBOG TECHNOLOGIES - Componentes Modernos y Avanzados
-// Diseño profesional, animado y de alto impacto
-// ============================================================================
+import React, { useState, useEffect, useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { ChevronRight, BarChart3, Shield, FileText, Zap, Cpu, Database, Layers, GitBranch, Boxes } from 'lucide-react';
 
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { ChevronRight, Zap, BarChart3, Shield, Users, TrendingUp } from 'lucide-react';
+function ParticleField() {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
 
-// ============================================================================
-// 1. HERO SECTION - Impactante y Moderno
-// ============================================================================
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    let animationId: number;
+    const particles: Array<{ x: number; y: number; vx: number; vy: number; r: number }> = [];
+
+    const resize = () => {
+      canvas.width = canvas.offsetWidth;
+      canvas.height = canvas.offsetHeight;
+    };
+    resize();
+    window.addEventListener('resize', resize);
+
+    for (let i = 0; i < 60; i++) {
+      particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        vx: (Math.random() - 0.5) * 0.4,
+        vy: (Math.random() - 0.5) * 0.4,
+        r: Math.random() * 2 + 0.5,
+      });
+    }
+
+    const draw = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach((p, i) => {
+        p.x += p.vx;
+        p.y += p.vy;
+        if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+        if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(20, 184, 166, 0.5)';
+        ctx.fill();
+
+        particles.slice(i + 1).forEach((p2) => {
+          const dist = Math.hypot(p.x - p2.x, p.y - p2.y);
+          if (dist < 120) {
+            ctx.beginPath();
+            ctx.moveTo(p.x, p.y);
+            ctx.lineTo(p2.x, p2.y);
+            ctx.strokeStyle = `rgba(20, 184, 166, ${0.15 * (1 - dist / 120)})`;
+            ctx.lineWidth = 0.5;
+            ctx.stroke();
+          }
+        });
+      });
+      animationId = requestAnimationFrame(draw);
+    };
+    draw();
+
+    return () => {
+      cancelAnimationFrame(animationId);
+      window.removeEventListener('resize', resize);
+    };
+  }, []);
+
+  return <canvas ref={canvasRef} className="absolute inset-0 w-full h-full" style={{ pointerEvents: 'none' }} />;
+}
+
+function AnimatedCounter({ target, suffix = '', prefix = '' }: { target: number; suffix?: string; prefix?: string }) {
+  const [count, setCount] = useState(0);
+  const ref = useRef<HTMLSpanElement>(null);
+  const [started, setStarted] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !started) {
+          setStarted(true);
+          const duration = 2000;
+          const startTime = Date.now();
+          const tick = () => {
+            const elapsed = Date.now() - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            const eased = 1 - Math.pow(1 - progress, 3);
+            setCount(Math.floor(eased * target));
+            if (progress < 1) requestAnimationFrame(tick);
+            else setCount(target);
+          };
+          tick();
+        }
+      },
+      { threshold: 0.5 }
+    );
+    if (ref.current) observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, [target, started]);
+
+  return <span ref={ref}>{prefix}{count}{suffix}</span>;
+}
 
 export function ModernHero() {
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] });
+  const y = useTransform(scrollYProgress, [0, 1], [0, 200]);
+  const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
+
   return (
-    <section className="relative min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 text-white overflow-hidden">
-      {/* Fondo animado con gradientes */}
+    <section ref={ref} className="relative min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 text-white overflow-hidden">
+      <ParticleField />
+
       <div className="absolute inset-0 opacity-30">
-        <motion.div
-          className="absolute top-20 left-10 w-96 h-96 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl"
-          animate={{ y: [0, 50, 0] }}
-          transition={{ duration: 8, repeat: Infinity }}
-        />
-        <motion.div
-          className="absolute bottom-20 right-10 w-96 h-96 bg-teal-500 rounded-full mix-blend-multiply filter blur-3xl"
-          animate={{ y: [0, -50, 0] }}
-          transition={{ duration: 8, repeat: Infinity, delay: 1 }}
-        />
+        <motion.div className="absolute top-20 left-10 w-96 h-96 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl" animate={{ y: [0, 50, 0] }} transition={{ duration: 8, repeat: Infinity }} />
+        <motion.div className="absolute bottom-20 right-10 w-96 h-96 bg-teal-500 rounded-full mix-blend-multiply filter blur-3xl" animate={{ y: [0, -50, 0] }} transition={{ duration: 8, repeat: Infinity, delay: 1 }} />
       </div>
 
-      {/* Contenido */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 py-32 flex flex-col justify-center min-h-screen">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-        >
-          <div className="inline-block mb-6">
-            <span className="text-teal-400 text-sm font-bold tracking-widest uppercase">
-              Transformación Digital para Gobiernos Locales
-            </span>
-          </div>
+      <motion.div style={{ y, opacity }} className="relative z-10 max-w-7xl mx-auto px-6 py-32 flex flex-col justify-center min-h-screen">
+        <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1 }}>
+          <span className="text-teal-400 text-sm font-bold tracking-widest uppercase">Transformación Digital para Gobiernos Locales</span>
 
-          <h1 className="text-6xl md:text-7xl font-black mb-6 leading-tight">
-            Inteligencia Pública
-            <br />
-            <span className="bg-gradient-to-r from-teal-400 to-blue-400 bg-clip-text text-transparent">
-              Para Alcaldías Locales
-            </span>
+          <h1 className="text-6xl md:text-8xl font-black mb-6 leading-tight mt-4">
+            <span className="block">Inteligencia Pública</span>
+            <span className="block bg-gradient-to-r from-teal-400 to-cyan-400 bg-clip-text text-transparent">Para Alcaldías Locales</span>
           </h1>
 
-          <p className="text-xl md:text-2xl text-slate-300 mb-8 max-w-2xl font-light leading-relaxed">
+          <p className="text-xl md:text-2xl text-slate-300 mb-8 max-w-2xl font-light">
             Soluciones SaaS avanzadas de gestión presupuestal, auditoría inteligente y control político para entidades territoriales colombianas.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4">
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="px-8 py-4 bg-gradient-to-r from-teal-500 to-teal-600 rounded-lg font-semibold text-white hover:shadow-2xl hover:shadow-teal-500/50 transition flex items-center gap-2 w-fit"
-            >
+          <div className="flex gap-4">
+            <button className="px-8 py-4 bg-teal-500 rounded-lg font-semibold text-white hover:bg-teal-600 transition flex items-center gap-2">
               Explorar Soluciones <ChevronRight size={20} />
-            </motion.button>
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="px-8 py-4 border-2 border-slate-400 rounded-lg font-semibold text-white hover:border-teal-400 hover:text-teal-400 transition w-fit"
-            >
+            </button>
+            <button className="px-8 py-4 border-2 border-slate-400 rounded-lg font-semibold text-white hover:border-teal-400 transition">
               Ver Casos de Éxito
-            </motion.button>
+            </button>
           </div>
         </motion.div>
 
-        {/* Stats animados */}
-        <motion.div
-          className="grid grid-cols-3 gap-8 mt-20 pt-20 border-t border-slate-700"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-        >
+        <motion.div className="grid grid-cols-3 gap-8 mt-20 pt-20 border-t border-slate-700/50" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }}>
           <div>
-            <div className="text-3xl font-black text-teal-400">12+</div>
-            <div className="text-slate-400 text-sm">Alcaldías</div>
+            <div className="text-4xl font-black text-teal-400"><AnimatedCounter target={12} suffix="+" /></div>
+            <div className="text-slate-400 text-sm mt-1">Alcaldías</div>
           </div>
           <div>
-            <div className="text-3xl font-black text-teal-400">$850M+</div>
-            <div className="text-slate-400 text-sm">Presupuesto Gestionado</div>
+            <div className="text-4xl font-black text-teal-400"><AnimatedCounter target={850} prefix="$" suffix="M+" /></div>
+            <div className="text-slate-400 text-sm mt-1">Presupuesto Gestionado</div>
           </div>
           <div>
-            <div className="text-3xl font-black text-teal-400">99.9%</div>
-            <div className="text-slate-400 text-sm">Disponibilidad</div>
+            <div className="text-4xl font-black text-teal-400">99.9%</div>
+            <div className="text-slate-400 text-sm mt-1">Disponibilidad</div>
           </div>
         </motion.div>
-      </div>
+      </motion.div>
     </section>
   );
 }
 
-// ============================================================================
-// 2. PRODUCTOS CON ANIMACIONES SOFISTICADAS
-// ============================================================================
-
 export function ProductsGrid() {
   const products = [
-    {
-      id: 1,
-      name: 'XBOG SMART',
-      category: 'Gestión Presupuestal',
-      description: 'Suite completa de análisis presupuestal, reportes de ejecución y gestión de fondos.',
-      features: ['Análisis en tiempo real', 'Reportes automáticos', 'Predicciones IA'],
-      color: 'from-blue-500 to-cyan-500',
-      icon: '📊',
-    },
-    {
-      id: 2,
-      name: 'Vigilancia Fiscal IA',
-      category: 'Auditoría Inteligente',
-      description: 'Auditoría automática para contralorías, personerías y entes de control.',
-      features: ['Detección de anomalías', 'Análisis de riesgo', 'Reportes certificados'],
-      color: 'from-purple-500 to-pink-500',
-      icon: '🛡️',
-    },
-    {
-      id: 3,
-      name: 'XBOG CONTROL',
-      category: 'Gestión Contractual',
-      description: 'Sistema de gestión y seguimiento contractual con asistente IA para entidades públicas.',
-      features: ['Seguimiento de contratos', 'Asistente IA integrado', 'Alertas y reportes'],
-      color: 'from-emerald-500 to-teal-500',
-      icon: '🎯',
-    },
+    { id: 1, name: 'XBOG SMART', category: 'Gestión Presupuestal', description: 'Suite completa de análisis presupuestal, reportes de ejecución y gestión de fondos.', features: ['Análisis en tiempo real', 'Reportes automáticos', 'Predicciones IA'], Icon: BarChart3 },
+    { id: 2, name: 'Vigilancia Fiscal IA', category: 'Auditoría Inteligente', description: 'Auditoría automática para contralorías, personerías y entes de control.', features: ['Detección de anomalías', 'Análisis de riesgo', 'Reportes certificados'], Icon: Shield },
+    { id: 3, name: 'XBOG CONTROL', category: 'Gestión Contractual', description: 'Sistema de gestión y seguimiento contractual con asistente IA para entidades públicas.', features: ['Seguimiento de contratos', 'Asistente IA integrado', 'Alertas y reportes'], Icon: FileText },
   ];
 
   return (
-    <section className="py-20 px-6 bg-slate-900">
+    <section className="py-24 px-6 bg-slate-900">
       <div className="max-w-7xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
+        <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-16">
           <h2 className="text-5xl font-black text-white mb-4">Nuestras Soluciones</h2>
-          <p className="text-slate-400 text-lg max-w-2xl mx-auto">
-            Plataformas SaaS especializadas en gestión pública que transforman datos en decisiones estratégicas.
-          </p>
+          <p className="text-slate-400 text-lg">Plataformas SaaS especializadas en gestión pública que transforman datos en decisiones estratégicas.</p>
         </motion.div>
 
         <div className="grid md:grid-cols-3 gap-8">
-          {products.map((product, idx) => (
-            <motion.div
-              key={product.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: idx * 0.1 }}
-              whileHover={{ y: -10 }}
-              className="group relative bg-slate-800 rounded-2xl p-8 overflow-hidden border border-slate-700 hover:border-teal-500 transition"
-            >
-              {/* Gradient background animado */}
-              <div className={`absolute inset-0 bg-gradient-to-br ${product.color} opacity-0 group-hover:opacity-10 transition duration-500`} />
-
-              <div className="relative z-10">
-                <div className="text-4xl mb-4">{product.icon}</div>
-                <h3 className="text-2xl font-bold text-white mb-2">{product.name}</h3>
-                <span className="inline-block text-xs font-semibold text-teal-400 mb-4 px-3 py-1 bg-teal-400/10 rounded-full">
-                  {product.category}
-                </span>
-                <p className="text-slate-400 mb-6">{product.description}</p>
-
-                <div className="space-y-2 mb-6">
-                  {product.features.map((feature, i) => (
-                    <div key={i} className="flex items-center gap-2 text-sm text-slate-300">
-                      <div className="w-2 h-2 bg-teal-400 rounded-full" />
-                      {feature}
-                    </div>
-                  ))}
+          {products.map((product, idx) => {
+            const { Icon } = product;
+            return (
+              <motion.div key={product.id} initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: idx * 0.15 }} whileHover={{ y: -12 }} className="group relative rounded-2xl p-8 border border-slate-700/50 hover:border-teal-500/50 transition-all" style={{ background: 'rgba(30, 41, 59, 0.5)', backdropFilter: 'blur(10px)' }}>
+                <div className="relative z-10">
+                  <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center mb-5">
+                    <Icon size={28} className="text-white" />
+                  </div>
+                  <h3 className="text-2xl font-bold text-white mb-2">{product.name}</h3>
+                  <span className="inline-block text-xs font-semibold text-teal-400 mb-4 px-3 py-1 bg-teal-400/10 rounded-full">{product.category}</span>
+                  <p className="text-slate-400 mb-6">{product.description}</p>
+                  <div className="space-y-2 mb-6">
+                    {product.features.map((feature, i) => (
+                      <div key={i} className="flex items-center gap-2 text-sm text-slate-300">
+                        <div className="w-2 h-2 bg-teal-400 rounded-full" />
+                        {feature}
+                      </div>
+                    ))}
+                  </div>
+                  <button className="text-teal-400 font-semibold flex items-center gap-2">Conocer más <ChevronRight size={16} /></button>
                 </div>
-
-                <motion.button
-                  whileHover={{ x: 5 }}
-                  className="text-teal-400 font-semibold flex items-center gap-2 group/btn"
-                >
-                  Conocer más <ChevronRight size={16} className="group-hover/btn:translate-x-1 transition" />
-                </motion.button>
-              </div>
-            </motion.div>
-          ))}
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>
   );
 }
 
-// ============================================================================
-// 3. CASOS DE ÉXITO - Interfaz Usme & Ediles 2026
-// ============================================================================
-
 export function CaseStudiesSection() {
-  const cases = [
-    {
-      id: 1,
-      name: 'Interfaz Usme 2024-2025',
-      client: 'Alcaldía Local de Usme',
-      tagline: 'Transformación de Gestión Presupuestal',
-      description: 'Implementación de XBOG SMART en la alcaldía local con 203 registros de análisis presupuestal profundo.',
-      results: [
-        '45% reducción en tiempo de análisis',
-        '89% precisión en predicciones',
-        'Transparencia total en reportes',
-        '4 nuevos módulos: Vigencia, Grandes Rubros, Concentración, Calidad',
-      ],
-      tech: ['React', 'Python', 'PostgreSQL', 'FastAPI'],
-      color: 'from-blue-600 to-cyan-600',
-      stats: {
-        registros: '203',
-        alcaldia: 'Usme',
-        precision: '89%',
-      },
-    },
-    {
-      id: 2,
-      name: 'Proyecto Ediles 2026',
-      client: 'Concejales y Diputados Locales',
-      tagline: 'Control Político Inteligente',
-      description: 'Dashboard de control político para 20 FDL (Fondos de Desarrollo Local) con análisis de ejecución presupuestal.',
-      results: [
-        'Monitoreo en tiempo real de 20 alcaldías',
-        'Alertas automáticas de desviaciones',
-        'Reportes ejecutivos interactivos',
-        'Integración con SECOP II y CRP',
-      ],
-      tech: ['React 19', 'TypeScript', 'Tailwind CSS', 'Recharts'],
-      color: 'from-purple-600 to-pink-600',
-      stats: {
-        alcaldias: '20 FDL',
-        concejales: '300+',
-        monitores: '24/7',
-      },
-    },
-  ];
-
   return (
-    <section className="py-20 px-6 bg-slate-950">
+    <section className="py-24 px-6 bg-slate-950">
       <div className="max-w-7xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
+        <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-16">
           <h2 className="text-5xl font-black text-white mb-4">Casos de Éxito</h2>
           <p className="text-slate-400 text-lg">Proyectos que transformaron la gestión pública en Bogotá</p>
         </motion.div>
 
         <div className="space-y-12">
-          {cases.map((caseStudy, idx) => (
-            <motion.div
-              key={caseStudy.id}
-              initial={{ opacity: 0, x: idx % 2 === 0 ? -50 : 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="group relative rounded-3xl overflow-hidden border border-slate-700 hover:border-teal-500 transition"
-            >
-              {/* Fondo con gradiente */}
-              <div className={`absolute inset-0 bg-gradient-to-br ${caseStudy.color} opacity-5 group-hover:opacity-10 transition`} />
-
-              <div className="relative z-10 p-8 md:p-12 grid md:grid-cols-2 gap-8 items-center">
-                {/* Contenido texto */}
-                <div>
-                  <div className={`inline-block px-4 py-2 rounded-full text-sm font-bold mb-4 bg-gradient-to-r ${caseStudy.color} bg-clip-text text-transparent`}>
-                    {caseStudy.client}
-                  </div>
-
-                  <h3 className="text-3xl md:text-4xl font-black text-white mb-3">
-                    {caseStudy.name}
-                  </h3>
-
-                  <p className="text-slate-400 text-lg mb-6">{caseStudy.tagline}</p>
-
-                  <p className="text-slate-300 mb-8 leading-relaxed">{caseStudy.description}</p>
-
-                  {/* Resultados */}
-                  <div className="mb-8">
-                    <h4 className="text-sm font-bold text-teal-400 uppercase tracking-wider mb-4">Resultados</h4>
-                    <ul className="space-y-2">
-                      {caseStudy.results.map((result, i) => (
-                        <motion.li
-                          key={i}
-                          initial={{ opacity: 0, x: -10 }}
-                          whileInView={{ opacity: 1, x: 0 }}
-                          transition={{ delay: i * 0.1 }}
-                          className="flex items-center gap-3 text-slate-300"
-                        >
-                          <CheckIcon />
-                          {result}
-                        </motion.li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  {/* Tech stack */}
-                  <div className="flex flex-wrap gap-2">
-                    {caseStudy.tech.map((tech) => (
-                      <span key={tech} className="text-xs font-semibold px-3 py-1 bg-slate-700 text-slate-300 rounded-full">
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Stats visuales */}
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  className="grid grid-cols-2 gap-4"
-                >
-                  {Object.entries(caseStudy.stats).map(([key, value]) => (
-                    <div
-                      key={key}
-                      className="p-6 rounded-2xl bg-gradient-to-br from-slate-800 to-slate-900 border border-slate-700"
-                    >
-                      <div className={`text-3xl font-black bg-gradient-to-r ${caseStudy.color} bg-clip-text text-transparent mb-2`}>
-                        {value}
-                      </div>
-                      <div className="text-sm text-slate-400 capitalize">
-                        {key.replace(/([A-Z])/g, ' $1').trim()}
-                      </div>
-                    </div>
-                  ))}
-                </motion.div>
-              </div>
+          {[
+            { name: 'Interfaz Usme 2024-2025', client: 'Alcaldía Local de Usme', results: ['203 registros analizados', '45% reducción en tiempo', '89% precisión IA', '4 módulos nuevos'] },
+            { name: 'Proyecto Ediles 2026', client: 'Concejales y Diputados Locales', results: ['20 FDL monitoreados', '300+ usuarios activos', 'Alertas automáticas', 'Reportes en tiempo real'] },
+          ].map((caseStudy, idx) => (
+            <motion.div key={idx} initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="rounded-3xl p-8 md:p-12 border border-slate-700/50" style={{ background: 'rgba(30, 41, 59, 0.4)', backdropFilter: 'blur(12px)' }}>
+              <h3 className="text-3xl font-black text-white mb-2">{caseStudy.name}</h3>
+              <p className="text-teal-400 text-lg font-medium mb-6">{caseStudy.client}</p>
+              <ul className="space-y-3">
+                {caseStudy.results.map((result, i) => (
+                  <li key={i} className="flex items-center gap-3 text-slate-300">
+                    <div className="w-2 h-2 bg-teal-400 rounded-full" />
+                    {result}
+                  </li>
+                ))}
+              </ul>
             </motion.div>
           ))}
         </div>
@@ -338,132 +236,54 @@ export function CaseStudiesSection() {
     </section>
   );
 }
-
-// ============================================================================
-// 4. TECNOLOGÍA AVANZADA
-// ============================================================================
 
 export function TechStack() {
   const techs = [
-    { name: 'React 19', icon: '⚛️', desc: 'Interfaz moderna' },
-    { name: 'Python/FastAPI', icon: '🐍', desc: 'Backend escalable' },
-    { name: 'PostgreSQL', icon: '🗄️', desc: 'Datos confiables' },
-    { name: 'Tailwind CSS', icon: '🎨', desc: 'Diseño profesional' },
-    { name: 'Machine Learning', icon: '🤖', desc: 'IA avanzada' },
-    { name: 'Kubernetes', icon: '☸️', desc: 'Infraestructura' },
+    { name: 'React 19', Icon: Boxes },
+    { name: 'Python/FastAPI', Icon: Cpu },
+    { name: 'PostgreSQL', Icon: Database },
+    { name: 'Tailwind CSS', Icon: Layers },
+    { name: 'Machine Learning', Icon: Zap },
+    { name: 'CI/CD', Icon: GitBranch },
   ];
 
   return (
-    <section className="py-20 px-6 bg-slate-900">
+    <section className="py-24 px-6 bg-slate-900">
       <div className="max-w-7xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
+        <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="text-center mb-16">
           <h2 className="text-5xl font-black text-white mb-4">Stack Tecnológico</h2>
           <p className="text-slate-400 text-lg">Construido con las tecnologías más avanzadas</p>
         </motion.div>
-
-        <div className="grid md:grid-cols-3 gap-6">
-          {techs.map((tech, idx) => (
-            <motion.div
-              key={tech.name}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: idx * 0.1 }}
-              whileHover={{ y: -5 }}
-              className="p-6 rounded-xl bg-gradient-to-br from-slate-800 to-slate-900 border border-slate-700 hover:border-teal-500 transition text-center"
-            >
-              <div className="text-4xl mb-3">{tech.icon}</div>
-              <h3 className="text-lg font-bold text-white mb-2">{tech.name}</h3>
-              <p className="text-slate-400 text-sm">{tech.desc}</p>
-            </motion.div>
-          ))}
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
+          {techs.map((tech) => {
+            const { Icon } = tech;
+            return (
+              <motion.div key={tech.name} whileHover={{ y: -8 }} className="p-6 rounded-xl border border-slate-700/50 text-center" style={{ background: 'rgba(30, 41, 59, 0.4)' }}>
+                <Icon size={24} className="text-teal-400 mx-auto mb-3" />
+                <h3 className="text-base font-bold text-white">{tech.name}</h3>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>
   );
 }
 
-// ============================================================================
-// 5. CTA FINAL CON ANIMACIÓN
-// ============================================================================
-
 export function FinalCTA() {
   return (
-    <section className="py-20 px-6 bg-gradient-to-r from-teal-600 to-blue-600 relative overflow-hidden">
-      {/* Elementos decorativos animados */}
-      <motion.div
-        className="absolute top-10 right-10 w-72 h-72 bg-white opacity-5 rounded-full blur-3xl"
-        animate={{ y: [0, 30, 0] }}
-        transition={{ duration: 6, repeat: Infinity }}
-      />
-
-      <div className="relative z-10 max-w-4xl mx-auto text-center">
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-5xl font-black text-white mb-6"
-        >
-          ¿Listo para Transformar tu Gestión Pública?
-        </motion.h2>
-
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.1 }}
-          className="text-xl text-white/90 mb-8 max-w-2xl mx-auto"
-        >
-          Únete a las alcaldías que ya confían en nuestras soluciones para optimizar su gestión pública.
-        </motion.p>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.2 }}
-          className="flex flex-col sm:flex-row gap-4 justify-center"
-        >
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="px-8 py-4 bg-white text-teal-600 font-bold rounded-lg hover:shadow-2xl transition"
-          >
-            Solicitar Demo
-          </motion.button>
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="px-8 py-4 border-2 border-white text-white font-bold rounded-lg hover:bg-white/10 transition"
-          >
-            Contactar Ventas
-          </motion.button>
-        </motion.div>
+    <section className="py-24 px-6 bg-gradient-to-r from-teal-600 via-cyan-600 to-blue-600">
+      <div className="max-w-4xl mx-auto text-center">
+        <h2 className="text-5xl font-black text-white mb-6">¿Listo para Transformar tu Gestión Pública?</h2>
+        <p className="text-xl text-white/90 mb-8">Únete a las alcaldías que ya confían en nuestras soluciones.</p>
+        <div className="flex gap-4 justify-center">
+          <button className="px-8 py-4 bg-white text-teal-600 font-bold rounded-lg hover:bg-slate-100 transition">Solicitar Demo</button>
+          <button className="px-8 py-4 border-2 border-white text-white font-bold rounded-lg hover:bg-white/10 transition">Contactar Ventas</button>
+        </div>
       </div>
     </section>
   );
 }
-
-// ============================================================================
-// COMPONENTES AUXILIARES
-// ============================================================================
-
-function CheckIcon() {
-  return (
-    <div className="w-5 h-5 rounded-full bg-teal-500/20 border border-teal-500 flex items-center justify-center flex-shrink-0">
-      <div className="w-2 h-2 bg-teal-400 rounded-full" />
-    </div>
-  );
-}
-
-// ============================================================================
-// PÁGINA PRINCIPAL COMPLETA
-// ============================================================================
 
 export default function PortfolioModerno() {
   return (
