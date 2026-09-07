@@ -1,5 +1,5 @@
-import PortfolioModerno from "@/components/ModernPortfolio";
+import FusionPortfolio from "@/components/FusionPortfolio";
 
 export default function Home() {
-  return <PortfolioModerno />;
+  return <FusionPortfolio />;
 }
