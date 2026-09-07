@@ -131,6 +131,8 @@ function vitePluginStorageProxy(): Plugin {
   };
 }
 
+// Configuración de Vite Unificada con Base URL para GitHub Pages
+// Configuración de Vite Unificada
 export default defineConfig({
   base: '/xbogtechnologies/', // <-- AGREGA ESTA LÍNEA EXACTAMENTE AQUÍ
   plugins: [
@@ -152,6 +154,7 @@ export default defineConfig({
   build: {
     outDir: path.resolve(import.meta.dirname, "dist"),
     emptyOutDir: true,
+    assetsDir: "assets", // <-- AGREGA ESTA LÍNEA AQUÍ (No olvides la coma en la línea de arriba)
   },
   server: {
     port: 3000,
@@ -172,4 +175,3 @@ export default defineConfig({
     },
   },
 });
-
