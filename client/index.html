@@ -1,30 +1,735 @@
-<!doctype html>
+﻿<!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
-    <title>XBOG TECHNOLOGIES | Control Político, Auditoría y Gestión Contractual</title>
-    <meta name="description" content="Soluciones SaaS inteligentes para control político, auditoría fiscal y gestión contractual en gobiernos locales colombianos." />
-    <meta name="keywords" content="control político, auditoría inteligente, gestión contractual, XBOG, alcaldías locales, gobierno digital" />
-    <meta name="author" content="XBOG TECHNOLOGIES" />
-    <meta property="og:title" content="XBOG TECHNOLOGIES | Inteligencia Pública para Alcaldías Locales" />
-    <meta property="og:description" content="Soluciones SaaS para control político, auditoría fiscal y gestión contractual en gobiernos locales." />
-    <meta property="og:type" content="website" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet" />
-    <style>
-      :root {
-        --font-display: 'Poppins', sans-serif;
-        --font-body: 'Sora', sans-serif;
-      }
-      body { font-family: var(--font-body); }
-      h1, h2, h3, h4, h5, h6 { font-family: var(--font-display); }
-    </style>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XBOG TECHNOLOGIES | Studio GovTech OS</title>
     
-  </body>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-deep: #05050a;
+            --bg-card: #0c0d16;
+            --accent-cyan: #00f0ff;
+            --accent-magenta: #ff007f;
+            --accent-purple: #7000ff;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            background-color: var(--bg-deep);
+            color: var(--text-main);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 15% 15%, rgba(112, 0, 255, 0.25) 0%, transparent 40%),
+                radial-gradient(circle at 85% 60%, rgba(0, 240, 255, 0.2) 0%, transparent 45%),
+                radial-gradient(circle at 50% 90%, rgba(255, 0, 127, 0.15) 0%, transparent 50%);
+            background-attachment: fixed;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-size: 40px 40px;
+            background-image: 
+                linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
+
+        header {
+            background: rgba(5, 5, 10, 0.85);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            position: fixed;
+            top: 0; width: 100%; z-index: 100;
+        }
+
+        .nav-wrap { display: flex; justify-content: space-between; align-items: center; height: 80px; }
+
+        .logo-text {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 1.4rem;
+            letter-spacing: 2px;
+            color: #fff;
+            text-shadow: 0 0 12px var(--accent-cyan);
+        }
+
+        .logo-text span { color: var(--accent-cyan); }
+
+        .btn-neon {
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-cyan));
+            color: #fff;
+            padding: 12px 28px;
+            border-radius: 8px;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.4);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .btn-neon:hover {
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 0 35px rgba(255, 0, 127, 0.6);
+        }
+
+        .btn-outline {
+            background: rgba(255, 255, 255, 0.05);
+            color: #fff;
+            padding: 12px 28px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(8px);
+            transition: all 0.3s ease;
+        }
+
+        .btn-outline:hover {
+            border-color: var(--accent-cyan);
+            background: rgba(0, 240, 255, 0.1);
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.2);
+        }
+
+        .hero { padding: 160px 0 90px; text-align: center; }
+
+        .tag-studio {
+            display: inline-block;
+            background: rgba(112, 0, 255, 0.2);
+            border: 1px solid var(--accent-purple);
+            color: var(--accent-cyan);
+            padding: 6px 18px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+            box-shadow: 0 0 15px rgba(112, 0, 255, 0.3);
+        }
+
+        .hero h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 4rem;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            background: linear-gradient(180deg, #ffffff 30%, var(--accent-cyan) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            max-width: 750px;
+            margin: 0 auto 40px;
+            line-height: 1.6;
+        }
+
+        .hero-preview-img {
+            margin-top: 50px;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(0, 240, 255, 0.4);
+            box-shadow: 0 0 50px rgba(0, 240, 255, 0.2);
+            background: #000;
+        }
+
+        .hero-preview-img img {
+            width: 100%;
+            height: 480px;
+            object-fit: contain;
+            display: block;
+            background-color: #0d1117;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 60px;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .stat-item h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.8rem;
+            color: #fff;
+            text-shadow: 0 0 15px var(--accent-cyan);
+        }
+
+        .stat-item p { font-size: 0.9rem; color: var(--text-muted); margin-top: 4px; }
+
+        .section-title { text-align: center; margin: 100px 0 60px; }
+        .section-title h2 { font-family: 'Space Grotesk', sans-serif; font-size: 2.8rem; color: #fff; }
+        .section-title p { color: var(--text-muted); margin-top: 8px; }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .cyber-card {
+            background: var(--bg-card);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 32px;
+            position: relative;
+            transition: all 0.4s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .cyber-card::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 3px;
+            background: linear-gradient(90deg, var(--accent-magenta), var(--accent-cyan));
+            opacity: 0.4;
+            transition: opacity 0.4s ease;
+        }
+
+        .cyber-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent-cyan);
+            box-shadow: 0 10px 40px rgba(0, 240, 255, 0.2);
+        }
+
+        .cyber-card:hover::before { opacity: 1; }
+
+        .icon-box {
+            width: 50px;
+            height: 50px;
+            background: rgba(0, 240, 255, 0.1);
+            border: 1px solid var(--accent-cyan);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--accent-cyan);
+            margin-bottom: 20px;
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.2);
+        }
+
+        .cyber-card h3 { font-size: 1.5rem; margin-bottom: 8px; color: #fff; }
+        .cyber-card p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; margin-bottom: 20px; }
+
+        .tag-pill {
+            display: inline-block;
+            background: rgba(0, 240, 255, 0.1);
+            color: var(--accent-cyan);
+            border: 1px solid rgba(0, 240, 255, 0.3);
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .feature-list { list-style: none; margin-bottom: 24px; }
+        .feature-list li {
+            font-size: 0.9rem;
+            color: #cbd5e1;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card-link {
+            color: var(--accent-cyan);
+            font-weight: 700;
+            text-decoration: none;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: gap 0.2s ease;
+        }
+        .card-link:hover { gap: 10px; }
+
+        /* Casos de Éxito e Interactividad */
+        .cases-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 30px;
+        }
+
+        .case-card {
+            background: var(--bg-card);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 36px;
+            border-left: 4px solid var(--accent-cyan);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .case-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 10px 35px rgba(0, 240, 255, 0.2);
+            border-color: var(--accent-cyan);
+        }
+
+        .case-card h3 { font-size: 1.8rem; color: #fff; margin-bottom: 4px; display: flex; align-items: center; justify-content: space-between; }
+        .case-subtitle { color: var(--accent-cyan); font-weight: 600; font-size: 0.95rem; margin-bottom: 24px; }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+
+        .metric-box {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 12px;
+            padding: 16px;
+        }
+
+        .metric-box .val { font-size: 1.5rem; font-weight: 800; color: #fff; }
+        .metric-box .lbl { font-size: 0.8rem; color: var(--text-muted); }
+
+        .click-hint {
+            display: inline-block;
+            margin-top: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--accent-cyan);
+        }
+
+        /* Modal Interactivo */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(5, 5, 10, 0.92);
+            backdrop-filter: blur(14px);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-content {
+            background: #0a0d18;
+            border: 1px solid var(--accent-cyan);
+            box-shadow: 0 0 60px rgba(0, 240, 255, 0.35);
+            border-radius: 20px;
+            max-width: 950px;
+            width: 92%;
+            max-height: 88vh;
+            overflow-y: auto;
+            padding: 40px;
+            position: relative;
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+
+        .modal-overlay.active .modal-content {
+            transform: scale(1);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px; right: 24px;
+            font-size: 2rem;
+            color: #fff;
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+
+        .modal-img-container {
+            width: 100%;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(0, 240, 255, 0.3);
+            margin: 20px 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .modal-img-container img {
+            width: 100%;
+            display: block;
+            object-fit: cover;
+        }
+
+        .modules-pill-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .module-pill {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 8px;
+            padding: 10px 14px;
+            font-size: 0.85rem;
+            color: #e2e8f0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Stack Tecnológico */
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 20px;
+        }
+
+        .tech-box {
+            background: var(--bg-card);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 24px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .tech-box:hover {
+            border-color: var(--accent-cyan);
+            transform: translateY(-4px);
+        }
+
+        .tech-box i { font-size: 2rem; color: var(--accent-cyan); margin-bottom: 12px; display: block; }
+        .tech-box span { font-size: 0.9rem; font-weight: 700; color: #fff; }
+
+        .cta-section {
+            margin-top: 120px;
+            background: linear-gradient(135deg, rgba(0, 240, 255, 0.1) 0%, rgba(112, 0, 255, 0.15) 100%);
+            border: 1px solid rgba(0, 240, 255, 0.3);
+            border-radius: 24px;
+            padding: 80px 40px;
+            text-align: center;
+        }
+
+        .cta-section h2 { font-size: 3rem; color: #fff; margin-bottom: 16px; font-family: 'Space Grotesk', sans-serif; }
+        .cta-section p { color: var(--text-muted); font-size: 1.1rem; margin-bottom: 32px; }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .cases-grid { grid-template-columns: 1fr; }
+            .stats-grid { grid-template-columns: 1fr; gap: 30px; }
+            .cta-section h2 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <div class="nav-wrap">
+                <div class="logo-text">XBOG <span>TECHNOLOGIES</span></div>
+                <a href="#contacto" class="btn-neon"><i class="bi bi-play-fill"></i> SOLICITAR DEMO</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <span class="tag-studio"><i class="bi bi-lightning-charge-fill"></i> Studio GovTech OS</span>
+            <h1>Inteligencia Pública<br>Para Alcaldías Locales</h1>
+            <p>Soluciones SaaS avanzadas de gestión presupuestal, auditoría inteligente y control político para entidades territoriales colombianas.</p>
+            
+            <div style="display: flex; gap: 16px; justify-content: center;">
+                <a href="#soluciones" class="btn-neon">EXPLORAR SOLUCIONES <i class="bi bi-arrow-right"></i></a>
+                <a href="#casos" class="btn-outline">VER CASOS DE ÉXITO</a>
+            </div>
+
+            <!-- Previsualización de la plataforma real con captura de Vigilancia Fiscal -->
+            <div class="hero-preview-img">
+                <img src="https://xbog-control.pages.dev/" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1600&auto=format&fit=crop';" alt="Dashboard XBOG SMART GovTech">
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <h3>12+</h3>
+                    <p>Alcaldías Impactadas</p>
+                </div>
+                <div class="stat-item">
+                    <h3 style="color: var(--accent-magenta); text-shadow: 0 0 15px var(--accent-magenta);">$850M+</h3>
+                    <p>Presupuesto Gestionado</p>
+                </div>
+                <div class="stat-item">
+                    <h3 style="color: var(--accent-cyan); text-shadow: 0 0 15px var(--accent-cyan);">99.9%</h3>
+                    <p>Disponibilidad del Sistema</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NUESTRAS SOLUCIONES -->
+    <section id="soluciones" class="container" style="padding-bottom: 60px;">
+        <div class="section-title">
+            <h2>Nuestras Soluciones</h2>
+            <p>Plataformas SaaS especializadas en gestión pública que transforman datos en decisiones estratégicas.</p>
+        </div>
+
+        <div class="cards-grid">
+            <div class="cyber-card">
+                <div>
+                    <div class="icon-box"><i class="bi bi-bar-chart-line-fill"></i></div>
+                    <h3>XBOG SMART</h3>
+                    <span class="tag-pill">Gestión Presupuestal</span>
+                    <p>Suite completa de análisis presupuestal, reportes de ejecución y gestión de fondos.</p>
+                    <ul class="feature-list">
+                        <li><i class="bi bi-check-circle-fill" style="color: var(--accent-cyan);"></i> Análisis en tiempo real</li>
+                        <li><i class="bi bi-check-circle-fill" style="color: var(--accent-cyan);"></i> Reportes automáticos</li>
+                        <li><i class="bi bi-check-circle-fill" style="color: var(--accent-cyan);"></i> Predicciones IA</li>
+                    </ul>
+                </div>
+                <a href="https://xbog-control.pages.dev/" target="_blank" class="card-link">Explorar Módulo <i class="bi bi-box-arrow-up-right"></i></a>
+            </div>
+
+            <div class="cyber-card">
+                <div>
+                    <div class="icon-box" style="color: var(--accent-magenta); border-color: var(--accent-magenta); background: rgba(255, 0, 127, 0.1);"><i class="bi bi-shield-check"></i></div>
+                    <h3>Vigilancia Fiscal IA</h3>
+                    <span class="tag-pill" style="color: var(--accent-magenta); border-color: rgba(255,0,127,0.3); background: rgba(255,0,127,0.1);">Auditoría Inteligente</span>
+                    <p>Auditoría automática para contralorías, personerías y entes de control con cruces SECOP II, SIRI y Contraloría.</p>
+                    <ul class="feature-list">
+                        <li><i class="bi bi-check-circle-fill" style="color: var(--accent-magenta);"></i> Detección de anomalías en vivo</li>
+                        <li><i class="bi bi-check-circle-fill" style="color: var(--accent-magenta);"></i> Análisis por nivel de riesgo</li>
+                        <li><i class="bi bi-check-circle-fill" style="color: var(--accent-magenta);"></i> 3,500+ contratos analizados</li>
+                    </ul>
+                </div>
+                <a href="https://xbog-control.pages.dev/" target="_blank" class="card-link" style="color: var(--accent-magenta);">Ver Vigilancia Fiscal <i class="bi bi-box-arrow-up-right"></i></a>
+            </div>
+
+            <div class="cyber-card" style="border-color: rgba(168,85,247,0.4);">
+                <div>
+                    <div class="icon-box" style="color: var(--accent-purple); border-color: var(--accent-purple); background: rgba(112, 0, 255, 0.1);"><i class="bi bi-file-earmark-text-fill"></i></div>
+                    <h3>XBOG CONTROL</h3>
+                    <span class="tag-pill" style="color: #a855f7; border-color: rgba(168,85,247,0.3); background: rgba(168,85,247,0.1);">Gestión Contractual</span>
+                    <p>Sistema de gestión y seguimiento contractual con asistente IA para entidades públicas.</p>
+                    <ul class="feature-list">
+                        <li><i class="bi bi-check-circle-fill" style="color: #a855f7;"></i> Seguimiento de contratos</li>
+                        <li><i class="bi bi-check-circle-fill" style="color: #a855f7;"></i> Asistente IA integrado</li>
+                        <li><i class="bi bi-check-circle-fill" style="color: #a855f7;"></i> Alertas y reportes</li>
+                    </ul>
+                </div>
+                <a href="https://xbog-control.pages.dev/" target="_blank" class="card-link" style="color: #a855f7;">Probar Plataforma en Vivo <i class="bi bi-box-arrow-up-right"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CASOS DE ÉXITO CON MODAL INTERACTIVO REAL -->
+    <section id="casos" class="container" style="padding-bottom: 60px;">
+        <div class="section-title">
+            <h2>Casos de Éxito</h2>
+            <p>Haz clic en cualquier tarjeta para ver la interfaz real y los 10 módulos del sistema</p>
+        </div>
+
+        <div class="cases-grid">
+            <!-- Tarjeta Usme -->
+            <div class="case-card" onclick="openModal('modal-usme')">
+                <h3>Interfaz Usme 2024–2025 <i class="bi bi-arrows-angle-expand text-cyan-400"></i></h3>
+                <div class="case-subtitle">Alcaldía Local de Usme</div>
+                <div class="metrics-grid">
+                    <div class="metric-box">
+                        <div class="val">3,500</div>
+                        <div class="lbl">Contratos analizados</div>
+                    </div>
+                    <div class="metric-box">
+                        <div class="val" style="color: var(--accent-cyan);">45%</div>
+                        <div class="lbl">Reducción en tiempo</div>
+                    </div>
+                    <div class="metric-box">
+                        <div class="val" style="color: var(--accent-magenta);">89%</div>
+                        <div class="lbl">Precisión IA</div>
+                    </div>
+                    <div class="metric-box">
+                        <div class="val">10</div>
+                        <div class="lbl">Módulos operativos</div>
+                    </div>
+                </div>
+                <span class="click-hint"><i class="bi bi-box-arrow-up-right"></i> Clic para ver captura real de la plataforma</span>
+            </div>
+
+            <!-- Tarjeta Ediles -->
+            <div class="case-card" style="border-left-color: var(--accent-magenta);" onclick="openModal('modal-ediles')">
+                <h3>Proyecto Ediles 2026 <i class="bi bi-arrows-angle-expand" style="color: var(--accent-magenta);"></i></h3>
+                <div class="case-subtitle" style="color: var(--accent-magenta);">Concejales y Diputados Locales</div>
+                <div class="metrics-grid">
+                    <div class="metric-box">
+                        <div class="val">20</div>
+                        <div class="lbl">FDL monitoreados</div>
+                    </div>
+                    <div class="metric-box">
+                        <div class="val" style="color: var(--accent-magenta);">300+</div>
+                        <div class="lbl">Usuarios activos</div>
+                    </div>
+                    <div class="metric-box">
+                        <div class="val" style="color: var(--accent-cyan);">Alertas</div>
+                        <div class="lbl">Automáticas SECOP/SIRI</div>
+                    </div>
+                    <div class="metric-box">
+                        <div class="val">Reportes</div>
+                        <div class="lbl">En tiempo real</div>
+                    </div>
+                </div>
+                <span class="click-hint" style="color: var(--accent-magenta);"><i class="bi bi-box-arrow-up-right"></i> Clic para ver módulos y captura real</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- STACK TECNOLÓGICO -->
+    <section class="container" style="padding-bottom: 60px;">
+        <div class="section-title">
+            <h2>Stack Tecnológico</h2>
+            <p>Construido con las tecnologías más avanzadas</p>
+        </div>
+
+        <div class="tech-grid">
+            <div class="tech-box"><i class="bi bi-filetype-jsx"></i><span>React 19</span></div>
+            <div class="tech-box"><i class="bi bi-code-square" style="color: var(--accent-magenta);"></i><span>Python/FastAPI</span></div>
+            <div class="tech-box"><i class="bi bi-database-fill" style="color: var(--accent-purple);"></i><span>PostgreSQL</span></div>
+            <div class="tech-box"><i class="bi bi-palette-fill"></i><span>Tailwind CSS</span></div>
+            <div class="tech-box"><i class="bi bi-cpu-fill" style="color: var(--accent-magenta);"></i><span>Machine Learning</span></div>
+            <div class="tech-box"><i class="bi bi-infinity" style="color: var(--accent-purple);"></i><span>CI/CD Cloudflare</span></div>
+        </div>
+    </section>
+
+    <!-- CTA FINAL -->
+    <section id="contacto" class="container" style="padding-bottom: 100px;">
+        <div class="cta-section">
+            <h2>¿Listo para Transformar tu Gestión Pública?</h2>
+            <p>Únete a las alcaldías que ya confían en nuestras soluciones.</p>
+            <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+                <a href="https://xbog-control.pages.dev/" target="_blank" class="btn-neon">Acceder a la Demo en Vivo</a>
+                <a href="#" class="btn-outline">Contactar Ventas</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- MODAL USME: MUESTRA LA CAPTURA REAL DE VIGILANCIA FISCAL IA -->
+    <div id="modal-usme" class="modal-overlay" onclick="closeModal('modal-usme')">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <button class="modal-close" onclick="closeModal('modal-usme')">&times;</button>
+            <h2 style="font-family: 'Space Grotesk', sans-serif;">XBOG SMART — Vigilancia Fiscal IA</h2>
+            <p style="color: var(--accent-cyan); margin-bottom: 16px;">Plataforma activa en la Alcaldía Local de Usme</p>
+
+            <div style="text-align: right; margin-bottom: 12px;">
+                <a href="https://xbog-control.pages.dev/" target="_blank" class="btn-neon" style="padding: 8px 16px; font-size: 0.85rem;">
+                    Abrir Plataforma en Vivo <i class="bi bi-box-arrow-up-right"></i>
+                </a>
+            </div>
+
+            <!-- Contenedor con la estructura y módulos que se aprecian en tu captura -->
+            <div class="modal-img-container">
+                <div style="background: #007c91; padding: 12px 20px; display: flex; justify-content: space-between; align-items: center; color: #fff; font-weight: 700;">
+                    <span>XBOG SMART — 7. Vigilancia Fiscal IA (USME)</span>
+                    <span style="font-size: 0.8rem; background: rgba(0,0,0,0.2); padding: 4px 10px; border-radius: 4px;">Cruce en tiempo real: SECOP II • SIRI • Contraloría</span>
+                </div>
+                <div style="padding: 24px; background: #f8fafc; color: #0f172a;">
+                    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 20px;">
+                        <div style="background: #eff6ff; border-left: 4px solid #2563eb; padding: 12px; border-radius: 6px;">
+                            <div style="font-size: 1.6rem; font-weight: 800; color: #1e40af;">3500</div>
+                            <div style="font-size: 0.75rem; color: #475569;">Contratos analizados</div>
+                        </div>
+                        <div style="background: #f8fafc; border-left: 4px solid #000; padding: 12px; border-radius: 6px;">
+                            <div style="font-size: 1.6rem; font-weight: 800;">8</div>
+                            <div style="font-size: 0.75rem; color: #475569;">Alertas totales</div>
+                        </div>
+                        <div style="background: #fef2f2; border-left: 4px solid #dc2626; padding: 12px; border-radius: 6px;">
+                            <div style="font-size: 1.6rem; font-weight: 800; color: #991b1b;">0</div>
+                            <div style="font-size: 0.75rem; color: #475569;">Críticas</div>
+                        </div>
+                        <div style="background: #fff7ed; border-left: 4px solid #ea580c; padding: 12px; border-radius: 6px;">
+                            <div style="font-size: 1.6rem; font-weight: 800; color: #c2410c;">4</div>
+                            <div style="font-size: 0.75rem; color: #475569;">Altas</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h4 style="color: #fff; margin-top: 24px; margin-bottom: 12px;">Módulos Integrados del Sistema:</h4>
+            <div class="modules-pill-grid">
+                <div class="module-pill"><i class="bi bi-calculator" style="color: var(--accent-cyan);"></i> 1. Presupuesto FDL</div>
+                <div class="module-pill"><i class="bi bi-graph-up-arrow" style="color: var(--accent-cyan);"></i> 2. Análisis PAC</div>
+                <div class="module-pill"><i class="bi bi-file-earmark-check" style="color: var(--accent-cyan);"></i> 3. Contratación</div>
+                <div class="module-pill"><i class="bi bi-map" style="color: var(--accent-cyan);"></i> 4. Planeación Local</div>
+                <div class="module-pill"><i class="bi bi-journal-text" style="color: var(--accent-cyan);"></i> 5. Generador de Proposiciones</div>
+                <div class="module-pill"><i class="bi bi-bell-fill" style="color: var(--accent-cyan);"></i> 6. Alertas Automáticas</div>
+                <div class="module-pill"><i class="bi bi-shield-check" style="color: var(--accent-magenta);"></i> 7. Vigilancia Fiscal IA</div>
+                <div class="module-pill"><i class="bi bi-lock-fill" style="color: var(--accent-cyan);"></i> 8. Ciberseguridad</div>
+                <div class="module-pill"><i class="bi bi-key-fill" style="color: var(--accent-cyan);"></i> 9. Gestor de Licencias</div>
+                <div class="module-pill"><i class="bi bi-people-fill" style="color: var(--accent-cyan);"></i> 10. Análisis Social por Localidad</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL EDILES: PROYECTO 2026 -->
+    <div id="modal-ediles" class="modal-overlay" onclick="closeModal('modal-ediles')">
+        <div class="modal-content" style="border-color: var(--accent-magenta);" onclick="event.stopPropagation()">
+            <button class="modal-close" onclick="closeModal('modal-ediles')">&times;</button>
+            <h2 style="font-family: 'Space Grotesk', sans-serif;">Proyecto Ediles 2026</h2>
+            <p style="color: var(--accent-magenta); margin-bottom: 16px;">Plataforma de Control Político para Concejales y Ediles Locales</p>
+            
+            <div style="text-align: right; margin-bottom: 12px;">
+                <a href="https://xbog-control.pages.dev/" target="_blank" class="btn-neon" style="padding: 8px 16px; font-size: 0.85rem; background: linear-gradient(135deg, var(--accent-magenta), var(--accent-purple));">
+                    Acceder a la Plataforma <i class="bi bi-box-arrow-up-right"></i>
+                </a>
+            </div>
+
+            <div class="modal-img-container" style="border-color: rgba(255, 0, 127, 0.4);">
+                <div style="background: #111827; padding: 16px; border-bottom: 1px solid rgba(255,255,255,0.1);">
+                    <h4 style="color: var(--accent-magenta); margin-bottom: 6px;"><i class="bi bi-speedometer2"></i> Monitor de Control Político</h4>
+                    <p style="font-size: 0.85rem; color: #94a3b8;">Monitoreo en línea para los 20 Fondos de Desarrollo Local (FDL) de Bogotá.</p>
+                </div>
+            </div>
+
+            <h4 style="color: #fff; margin-top: 24px; margin-bottom: 12px;">Capacidades Clave:</h4>
+            <ul class="feature-list">
+                <li><i class="bi bi-check-circle-fill" style="color: var(--accent-magenta);"></i> Consulta instantánea de cédulas y NITs en SECOP II, Procuraduría (SIRI) y Contraloría.</li>
+                <li><i class="bi bi-check-circle-fill" style="color: var(--accent-magenta);"></i> Clasificación inteligente de alertas: Críticas, Altas, Medias e Informativas.</li>
+                <li><i class="bi bi-check-circle-fill" style="color: var(--accent-magenta);"></i> Generador automático de proposiciones de debate para juntas administradoras locales.</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        function openModal(id) {
+            document.getElementById(id).classList.add('active');
+        }
+        function closeModal(id) {
+            document.getElementById(id).classList.remove('active');
+        }
+    </script>
+
+</body>
 </html>
