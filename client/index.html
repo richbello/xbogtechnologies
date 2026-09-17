@@ -1,12 +1,22 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>XBOG TECHNOLOGIES | Inteligencia Pública para Alcaldías</title>
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/xbogtechnologies/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CODESPAGE - Inteligencia Pública</title>
+    <script>
+      // Atrapar rutas inválidas y servir index.html para SPA routing
+      if (window.location.pathname !== '/xbogtechnologies/' && 
+          !window.location.pathname.includes('/xbogtechnologies/assets/') &&
+          !window.location.pathname.includes('/xbogtechnologies/src/')) {
+        // Si no es la ruta base ni assets, redirigir a index.html
+        window.history.replaceState({}, document.title, '/xbogtechnologies/');
+      }
+    </script>
+  </head>
+  <body>
     <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-</body>
+    <script type="module" src="/xbogtechnologies/src/main.tsx"></script>
+  </body>
 </html>
