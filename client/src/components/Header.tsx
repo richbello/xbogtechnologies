@@ -1,3 +1,4 @@
+import { Link } from 'wouter';
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
@@ -29,6 +30,9 @@ export default function Header() {
 
         {/* Desktop CTA */}
         <div className="hidden md:flex gap-3">
+          <Link href="/perfil">
+            <a className="text-sm font-medium text-foreground hover:text-cyan-400 transition py-2 px-3">Perfil CEO</a>
+          </Link>
           <Button
             variant="outline"
             size="sm"
@@ -64,6 +68,9 @@ export default function Header() {
       {isMenuOpen && (
         <div className="md:hidden border-t border-border bg-background">
           <nav className="container mx-auto px-4 py-4 flex flex-col gap-4">
+            <Link href="/perfil">
+              <a className="text-sm font-medium text-foreground hover:text-cyan-400 transition py-2">Perfil CEO</a>
+            </Link>
             <div className="flex gap-2 pt-2">
               <Button
                 variant="outline"
