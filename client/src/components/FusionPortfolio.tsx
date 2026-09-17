@@ -131,7 +131,7 @@ export function ModernHero() {
           </p>
 
           <div className="flex gap-4">
-            <Link href="/soluciones"><a className="px-8 py-4 bg-teal-500 rounded-lg font-semibold text-white hover:bg-teal-600 transition flex items-center gap-2">Explorar Soluciones <ChevronRight size={20} /></a></Link>
+            <button onClick={() => window.location.href = "/xbogtechnologies/soluciones"} className="px-8 py-4 bg-teal-500 rounded-lg font-semibold text-white hover:bg-teal-600 transition flex items-center gap-2">Explorar Soluciones <ChevronRight size={20} /></button>
             <button className="px-8 py-4 border-2 border-slate-400 rounded-lg font-semibold text-white hover:border-teal-400 transition">
               Ver Casos de Éxito
             </button>
