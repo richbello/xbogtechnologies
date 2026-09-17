@@ -15,7 +15,6 @@ function RouterComponent() {
     <Switch>
       {/* Añadimos estas dos opciones para que no falle sin importar cómo lo llame el botón */}
       <Route path="/" component={Home} />
-      <Route path="" component={Home} /> 
       
       <Route path="/servicios" component={Services} />
       <Route path="/servicios/:slug" component={ServiceDetail} />
