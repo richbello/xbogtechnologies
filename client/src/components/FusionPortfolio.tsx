@@ -110,6 +110,7 @@ export function ModernHero() {
 
   return (
     <section ref={ref} className="relative min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 text-white overflow-hidden">
+        <img src={HERO_IMG} alt="" className="absolute inset-0 w-full h-full object-cover opacity-25" />
       <ParticleField />
 
       <div className="absolute inset-0 opacity-30">
