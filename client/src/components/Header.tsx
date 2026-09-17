@@ -13,7 +13,7 @@ export default function Header() {
             <span className="text-white font-bold text-lg">XB</span>
           </div>
           <div className="hidden sm:flex flex-col">
-            <h1 className="text-lg font-bold text-foreground">XBOG TECHNOLOGIES</h1>
+            <h1 className="text-lg font-bold text-foreground">CODESPAGE</h1>
             <p className="text-xs text-muted-foreground">Automatización Digital</p>
           </div>
           <Button
@@ -21,7 +21,7 @@ export default function Header() {
             className="bg-gradient-to-r from-cyan-400 to-blue-500 text-slate-900 hover:from-cyan-500 hover:to-blue-600 border-0 font-semibold"
             onClick={() => window.open("https://xbog-control.pages.dev/", "_blank")}
           >
-            XBOG CONTROL
+            CODESPAGE CONTROL
           </Button>
         </div>
 
@@ -49,7 +49,7 @@ export default function Header() {
                 className="flex-1 bg-gradient-to-r from-cyan-400 to-blue-500 text-slate-900 hover:from-cyan-500 hover:to-blue-600 border-0 font-semibold"
                 onClick={() => window.open("https://xbog-control.pages.dev/", "_blank")}
               >
-                XBOG CONTROL
+                CODESPAGE CONTROL
               </Button>
         {/* Mobile Menu Button */}
         <button

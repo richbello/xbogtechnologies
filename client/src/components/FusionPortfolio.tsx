@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { ChevronRight, BarChart3, Shield, FileText, Zap, Cpu, Database, Layers, GitBranch, Boxes } from 'lucide-react';
 
+import { Link } from 'wouter';
 function ParticleField() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -122,7 +123,7 @@ export function ModernHero() {
 
           <h1 className="text-6xl md:text-8xl font-black mb-6 leading-tight mt-4">
             <span className="block">Inteligencia Pública</span>
-            <span className="block bg-gradient-to-r from-teal-400 to-cyan-400 bg-clip-text text-transparent">Para Alcaldías Locales</span>
+            <span className="block bg-gradient-to-r from-teal-400 to-cyan-400 bg-clip-text text-transparent">Para Alcaldías Locales y Municipales</span>
           </h1>
 
           <p className="text-xl md:text-2xl text-slate-300 mb-8 max-w-2xl font-light">
@@ -130,9 +131,7 @@ export function ModernHero() {
           </p>
 
           <div className="flex gap-4">
-            <button className="px-8 py-4 bg-teal-500 rounded-lg font-semibold text-white hover:bg-teal-600 transition flex items-center gap-2">
-              Explorar Soluciones <ChevronRight size={20} />
-            </button>
+            <Link href="/soluciones"><a className="px-8 py-4 bg-teal-500 rounded-lg font-semibold text-white hover:bg-teal-600 transition flex items-center gap-2">Explorar Soluciones <ChevronRight size={20} /></a></Link>
             <button className="px-8 py-4 border-2 border-slate-400 rounded-lg font-semibold text-white hover:border-teal-400 transition">
               Ver Casos de Éxito
             </button>
@@ -160,9 +159,9 @@ export function ModernHero() {
 
 export function ProductsGrid() {
   const products = [
-    { id: 1, name: 'XBOG SMART', category: 'Gestión Presupuestal', description: 'Suite completa de análisis presupuestal, reportes de ejecución y gestión de fondos.', features: ['Análisis en tiempo real', 'Reportes automáticos', 'Predicciones IA'], Icon: BarChart3 },
+    { id: 1, name: 'CODESPAGE SMART', category: 'Gestión Presupuestal', description: 'Suite completa de análisis presupuestal, reportes de ejecución y gestión de fondos.', features: ['Análisis en tiempo real', 'Reportes automáticos', 'Predicciones IA'], Icon: BarChart3 },
     { id: 2, name: 'Vigilancia Fiscal IA', category: 'Auditoría Inteligente', description: 'Auditoría automática para contralorías, personerías y entes de control.', features: ['Detección de anomalías', 'Análisis de riesgo', 'Reportes certificados'], Icon: Shield },
-    { id: 3, name: 'XBOG CONTROL', category: 'Gestión Contractual', description: 'Sistema de gestión y seguimiento contractual con asistente IA para entidades públicas.', features: ['Seguimiento de contratos', 'Asistente IA integrado', 'Alertas y reportes'], Icon: FileText },
+    { id: 3, name: 'CODESPAGE CONTROL', category: 'Gestión Contractual', description: 'Sistema de gestión y seguimiento contractual con asistente IA para entidades públicas.', features: ['Seguimiento de contratos', 'Asistente IA integrado', 'Alertas y reportes'], Icon: FileText },
   ];
 
   return (
