@@ -8,6 +8,7 @@ import Home from "./pages/Home";
 import Services from "./pages/Services";
 import ServiceDetail from "./pages/ServiceDetail";
 import SolucionesIA from "./pages/SolucionesIA";
+import PerfilCEO from './pages/PerfilCEO';
 
 // Cambiamos el nombre a RouterComponent para que no choque con el Router de wouter
 function RouterComponent() {
@@ -19,6 +20,7 @@ function RouterComponent() {
       <Route path="/servicios" component={Services} />
       <Route path="/servicios/:slug" component={ServiceDetail} />
       <Route path="/soluciones" component={SolucionesIA} />
+      <Route path="/perfil" component={PerfilCEO} />
       <Route path="/404" component={NotFound} />
       {/* Final fallback route */}
       <Route component={NotFound} />
