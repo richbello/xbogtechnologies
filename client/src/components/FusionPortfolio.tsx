@@ -3,6 +3,8 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import { ChevronRight, BarChart3, Shield, FileText, Zap, Cpu, Database, Layers, GitBranch, Boxes } from 'lucide-react';
 
 import { Link } from 'wouter';
+const HERO_IMG = 'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=2400&q=85';
+
 function ParticleField() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -110,7 +112,7 @@ export function ModernHero() {
 
   return (
     <section ref={ref} className="relative min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 text-white overflow-hidden">
-        <img src={HERO_IMG} alt="" className="absolute inset-0 w-full h-full object-cover opacity-25" />
+      <img src={HERO_IMG} alt="" className="absolute inset-0 w-full h-full object-cover opacity-25" />
       <ParticleField />
 
       <div className="absolute inset-0 opacity-30">
