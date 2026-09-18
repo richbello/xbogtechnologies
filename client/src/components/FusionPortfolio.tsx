@@ -1,4 +1,5 @@
 import richardPerfil from '../assets/richard-perfil.jpg';
+import xbogLogo from '../assets/xbog-logo.jpg';
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { ChevronRight, BarChart3, Shield, FileText, Zap, Cpu, Database, Layers, GitBranch, Boxes } from 'lucide-react';
@@ -302,7 +303,8 @@ export function CEOProfile() {
             </div>
           </div>
           {/* Contenido - Derecha */}
-          <div className="md:col-span-2 backdrop-blur-xl bg-gradient-to-r from-cyan-500/10 to-blue-500/10 p-12 flex flex-col justify-center">
+          <div className="md:col-span-2 backdrop-blur-xl bg-gradient-to-r from-cyan-500/10 to-blue-500/10 p-12 flex flex-col justify-center relative overflow-hidden">
+            <img src={xbogLogo} alt="XBOG Logo" className="absolute -right-10 -bottom-10 w-64 h-64 opacity-10 pointer-events-none" />
             <h2 className="text-5xl md:text-6xl font-black mb-4 text-cyan-300">Richard Bello</h2>
             <h3 className="text-2xl font-bold text-white mb-6">Roncancio</h3>
             <p className="text-gray-200 text-lg mb-4 font-semibold">Economista | Fundador CODESPAGE | Automatización IA</p>
