@@ -1,3 +1,4 @@
+import richardPerfil from '../assets/richard-perfil.jpg';
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { ChevronRight, BarChart3, Shield, FileText, Zap, Cpu, Database, Layers, GitBranch, Boxes } from 'lucide-react';
@@ -295,7 +296,7 @@ export function CEOProfile() {
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="grid md:grid-cols-2 gap-8 items-center backdrop-blur-xl bg-gradient-to-r from-cyan-500/10 to-blue-500/10 border border-cyan-400/30 rounded-2xl p-8 md:p-12">
           <div className="flex justify-center">
             <div className="relative">
-              <img src="/xbogtechnologies/images/richard-perfil.jpg" alt="Richard Bello CEO" className="rounded-xl shadow-2xl shadow-cyan-400/50 w-full max-w-sm" />
+              <img src={richardPerfil} alt="Richard Bello CEO" className="rounded-xl shadow-2xl shadow-cyan-400/50 w-full max-w-sm" />
               <div className="absolute -bottom-4 -right-4 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-xl p-6 text-white font-bold text-2xl w-20 h-20 flex items-center justify-center">CEO</div>
             </div>
           </div>
