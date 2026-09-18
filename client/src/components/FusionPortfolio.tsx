@@ -287,11 +287,40 @@ export function FinalCTA() {
   );
 }
 
+
+export function CEOProfile() {
+  return (
+    <section className="relative py-20 px-4">
+      <div className="container mx-auto max-w-6xl">
+        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="grid md:grid-cols-2 gap-8 items-center backdrop-blur-xl bg-gradient-to-r from-cyan-500/10 to-blue-500/10 border border-cyan-400/30 rounded-2xl p-8 md:p-12">
+          <div className="flex justify-center">
+            <div className="relative">
+              <img src="/images/richard-perfil.jpg" alt="Richard Bello CEO" className="rounded-xl shadow-2xl shadow-cyan-400/50 w-full max-w-sm" />
+              <div className="absolute -bottom-4 -right-4 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-xl p-6 text-white font-bold text-2xl w-20 h-20 flex items-center justify-center">CEO</div>
+            </div>
+          </div>
+          <div>
+            <h2 className="text-4xl md:text-5xl font-bold mb-6">Richard Bello Roncancio</h2>
+            <p className="text-gray-300 text-lg mb-4">Economista | Fundador CODESPAGE | Automatización IA para Sector Público</p>
+            <p className="text-gray-400 mb-8">19+ años de experiencia en finanzas públicas, tecnología y soluciones de inteligencia artificial para alcaldías y entidades de control.</p>
+            <div className="flex flex-col gap-3">
+              <Link href="/perfil"><a className="inline-block px-8 py-4 bg-gradient-to-r from-cyan-400 to-blue-500 text-slate-900 font-bold rounded-lg hover:shadow-lg hover:shadow-cyan-400/50 transition">Ver Perfil Completo</a></Link>
+              <a href="https://wa.me/573208303847" target="_blank" rel="noopener noreferrer" className="inline-block px-8 py-3 bg-white/5 border border-white/10 text-white font-semibold rounded-lg hover:border-cyan-400/50 transition">Agendar Reunión</a>
+            </div>
+          </div>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
+
 export default function PortfolioModerno() {
   return (
     <div className="bg-slate-900 min-h-screen">
       <ModernHero />
       <ProductsGrid />
+      <CEOProfile />
       <CaseStudiesSection />
       <TechStack />
       <FinalCTA />
