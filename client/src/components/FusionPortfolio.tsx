@@ -297,8 +297,8 @@ export function CEOProfile() {
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="grid md:grid-cols-3 gap-0 items-stretch rounded-2xl overflow-hidden border border-cyan-400/30">
           {/* Foto - Full Height */}
           <div className="md:col-span-1 bg-gradient-to-br from-cyan-500/20 to-blue-500/20 p-8 flex items-center justify-center">
-            <div className="relative w-full">
-              <img src={richardPerfil} alt="Richard Bello CEO" className="rounded-xl shadow-2xl shadow-cyan-400/50 w-full h-auto" />
+            <div className="relative w-full max-w-xs">
+              <img src={richardPerfil} alt="Richard Bello CEO" className="rounded-xl shadow-2xl shadow-cyan-400/50 w-full object-cover aspect-[3/4]" />
               <div className="absolute -bottom-4 -right-4 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-xl p-6 text-white font-bold text-2xl w-20 h-20 flex items-center justify-center">CEO</div>
             </div>
           </div>
