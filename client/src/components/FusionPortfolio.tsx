@@ -211,7 +211,7 @@ export function ProductsGrid() {
                       </div>
                     ))}
                   </div>
-                  <button className="text-teal-400 font-semibold flex items-center gap-2">Conocer más <ChevronRight size={16} /></button>
+                  <Link href="/soluciones"><a className="text-teal-400 font-semibold flex items-center gap-2 hover:text-teal-300 hover:gap-3 transition-all">Conocer más <ChevronRight size={16} /></a></Link>
                 </div>
               </motion.div>
             );
