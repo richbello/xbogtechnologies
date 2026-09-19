@@ -41,9 +41,33 @@ export default function PerfilCEO() {
         <div className="max-w-6xl mx-auto space-y-24">
 
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="grid md:grid-cols-2 gap-12 items-center">
-            <div className="relative rounded-2xl overflow-hidden h-80">
-              <img src={IMG.formacion} onError={hideOnError} alt="" loading="lazy" className="w-full h-full object-cover" />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 to-transparent" />
+            <div className="relative rounded-2xl overflow-hidden h-80 bg-gradient-to-br from-cyan-500/20 via-blue-600/20 to-slate-900 border border-cyan-400/30 p-8 flex flex-col justify-center shadow-2xl shadow-cyan-500/20">
+              <div className="absolute -right-8 -top-8 opacity-10">
+                <GraduationCap className="w-48 h-48 text-cyan-300" />
+              </div>
+              <div className="relative z-10">
+                <GraduationCap className="w-14 h-14 text-cyan-400 mb-4" />
+                <h3 className="text-2xl font-black text-white mb-2">Formación Continua</h3>
+                <p className="text-cyan-200 text-sm mb-6">Economía, tecnología y ciberseguridad</p>
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <div className="text-4xl font-black text-cyan-400">21+</div>
+                    <div className="text-xs text-gray-300">Años de experiencia</div>
+                  </div>
+                  <div>
+                    <div className="text-4xl font-black text-cyan-400">5</div>
+                    <div className="text-xs text-gray-300">Formaciones clave</div>
+                  </div>
+                  <div>
+                    <div className="text-4xl font-black text-cyan-400">3</div>
+                    <div className="text-xs text-gray-300">Certificadores globales</div>
+                  </div>
+                  <div>
+                    <div className="text-4xl font-black text-cyan-400">IA</div>
+                    <div className="text-xs text-gray-300">Especialización actual</div>
+                  </div>
+                </div>
+              </div>
             </div>
             <div>
               <div className="flex items-center gap-3 mb-6">
