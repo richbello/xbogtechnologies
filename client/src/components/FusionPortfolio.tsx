@@ -1,5 +1,6 @@
 import richardPerfil from '../assets/richard-perfil.jpg';
 import xbogLogo from '../assets/xbog-logo.jpg';
+import xbogLogoHeader from '../assets/xbog-logo-header.jpg';
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { ChevronRight, BarChart3, Shield, FileText, Zap, Cpu, Database, Layers, GitBranch, Boxes } from 'lucide-react';
@@ -124,6 +125,19 @@ export function ModernHero() {
 
       <motion.div style={{ y, opacity }} className="relative z-10 max-w-7xl mx-auto px-6 py-32 flex flex-col justify-center min-h-screen">
         <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1 }}>
+          <motion.div
+            className="inline-block bg-white rounded-2xl p-4 mb-8 shadow-2xl shadow-cyan-500/30"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8 }}
+          >
+            <img
+              src={xbogLogoHeader}
+              alt="XBOG Technologies"
+              className="h-20 md:h-24 w-auto"
+            />
+          </motion.div>
+          <br />
           <span className="text-teal-400 text-sm font-bold tracking-widest uppercase">Transformación Digital para Gobiernos Locales</span>
 
           <h1 className="text-6xl md:text-8xl font-black mb-6 leading-tight mt-4">
